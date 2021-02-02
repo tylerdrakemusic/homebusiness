@@ -22,10 +22,11 @@ h1{
 
     background-color: seashell;
     background-blend-mode: hard-light;
+    border: .199rem rgb(53,5,47);
+    border-radius: .23rem;
+    border-style:groove;
     box-sizing: border-box;
     color:rgb(1,13,17);
-    border: .099rem rgb(53,5,47);
-    border-style:groove;
     flex-flow: wrap-reverse;
     font-family: 'Viadoa Libre';
     font-kerning: auto;
@@ -40,8 +41,8 @@ h2::first-letter{
 h2,h3{
     background-color: rgb(1,7,13);
     border: 3rem rgb(0,5,7);
-    border-radius: .011rem;
-    box-sizing: boder-box;
+    border-radius: .23rem;
+    box-sizing: border-box;
     color: seashell;
     font-family: 'Reenie Beanie', cursive;
     font-style: italic;
@@ -67,10 +68,10 @@ li,ul{
     color: rgb(5,53,41);
 }
 p{
-    background-color: rgb(17,2,31);
-    border: .01247rem rgb(0, 17, 13);
-    border-style:ridge;
-    border-width:.13vmin;
+    background-color: rgb(7, 31, 129);
+    border: .51247rem rgb(0, 17, 13);
+    border-style:double;
+    border-radius: .29rem;
     color:seashell;
     font-family: 'Yellowtail', 'fantasy';
     font-kerning: auto;
@@ -79,27 +80,20 @@ p{
     font-variant: small-caps;
     initial-letter: bold;
     line-height: 1.323rem;
-    margin-bottom:.123rem;
+    margin-bottom:.0123rem;
     padding:.0623rem;
-    padding-bottom: 0 auto;
-    margin: 0.1869rem;
+    margin: 0.0169rem;
     text-indent: .331rem;
-    test-align: left;
+    text-align: left;
     word-spacing: .713rem;
 }
 section{
-    background-color: rgb(17,3,31);
-    border: .0123rem rgb(0, 17, 13);
+    background-color: rgb(6, 1, 23);
+    border-radius: .29rem;
     color: seashell;
     text-align: left;
     font-family: 'Yellowtail','fantasy';
     font-size: 1.23rem;
-    height: 73vh;
-    margin: 1 auto;
-    margin-bottom: 0 auto;
-    padding: 0 auto;
-    padding-bottom: 0 auto;
-    padding-left: 1.23rem;
     width: 37%;
 }
 
