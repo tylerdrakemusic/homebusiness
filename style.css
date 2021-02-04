@@ -16,22 +16,23 @@ body{
     margin:0 auto;
 }
 div{
-    text-align:right;
+    text-align:left;
 }
 h1{
 
     background-color: seashell;
     background-blend-mode: hard-light;
-    border: .199rem rgb(53,5,47);
     border-radius: .23rem;
-    border-style:groove;
+    border-style:ridge;
     box-sizing: border-box;
     color:rgb(1,13,17);
     flex-flow: wrap-reverse;
     font-family: 'Viadoa Libre';
     font-kerning: auto;
-    font-size: 5rem;
-    margin:0 auto;
+    font-size: 8.13123vh;
+    font-style: ;
+    font-variant: small-caps;
+    margin:.03193rem;
     padding:.0127rem auto;
     text-align: center;
 }
@@ -39,7 +40,7 @@ h2::first-letter{
     font-style:bold;
 }
 h2,h3{
-    background-color: rgb(1,7,13);
+    background-color: rgb(57, 143, 229);
     border: 3rem rgb(0,5,7);
     border-radius: .23rem;
     box-sizing: border-box;
@@ -48,9 +49,12 @@ h2,h3{
     font-style: italic;
     font-kerning: auto;
     font-variant: small-caps;
+    margin: .077rem;
+    padding: .733rem;
 }
 h4{
     font-size: 1rem;
+    margin: .113rem;
 }
 h5::before{
     content:"This is";
@@ -69,8 +73,8 @@ li,ul{
 }
 p{
     background-color: rgb(7, 31, 129);
-    border: .51247rem rgb(0, 17, 13);
-    border-style:double;
+    border: .21247rem rgb(0, 17, 13);
+    border-style:solid;
     border-radius: .29rem;
     color:seashell;
     font-family: 'Yellowtail', 'fantasy';
@@ -78,7 +82,7 @@ p{
     font-size: 1.2912341357rem;
     font-stretch: ultra-expanded;
     font-variant: small-caps;
-    initial-letter: bold;
+    initial-letter: bold;1, 7
     line-height: 1.323rem;
     margin-bottom:.0123rem;
     padding:.0623rem;
@@ -94,6 +98,7 @@ section{
     text-align: left;
     font-family: 'Yellowtail','fantasy';
     font-size: 1.23rem;
+    margin: .113rem;
     width: 37%;
 }
 
