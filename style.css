@@ -30,7 +30,7 @@ h1{
     font-family: 'Viadoa Libre';
     font-kerning: auto;
     font-size: 8.13123vh;
-    font-style: ;
+    font-style: bold;
     font-variant: small-caps;
     margin:.03193rem;
     padding:.0127rem auto;
@@ -70,6 +70,9 @@ input [type="email"]{
 li,ul{
     background-color: seashell;
     color: rgb(5,53,41);
+    font-family: 'Viadoa Libre';
+    font-kerning: auto;
+    font-style: normal;
 }
 p{
     background-color: rgb(7, 31, 129);
@@ -82,7 +85,7 @@ p{
     font-size: 1.2912341357rem;
     font-stretch: ultra-expanded;
     font-variant: small-caps;
-    initial-letter: bold;1, 7
+    initial-letter: bold;
     line-height: 1.323rem;
     margin-bottom:.0123rem;
     padding:.0623rem;
