@@ -1,10 +1,10 @@
 
-/* Preserver a order */
+/* Preserve a order */s
 a:link{
     color: rgb((123), 229, 131);
 }
 a:visited{
-    color:rgb(199, 43, 133);
+    color:rgb(255, 51, 187);
 }
 a:hover{
     color:rgb(221,221,221);
@@ -19,9 +19,8 @@ div{
     text-align:left;
 }
 h1{
-
-    background-color: seashell;
     background-blend-mode: hard-light;
+    background-color: seashell;
     border-radius: .23rem;
     border-style:ridge;
     box-sizing: border-box;
@@ -39,15 +38,28 @@ h1{
 h2::first-letter{
     font-style:bold;
 }
-h2,h3{
+h2{
     background-color: rgb(57, 143, 229);
-    border: 3rem rgb(0,5,7);
     border-radius: .23rem;
+    border: 3rem rgb(0,5,7);
     box-sizing: border-box;
     color: seashell;
     font-family: 'Reenie Beanie', cursive;
-    font-style: italic;
     font-kerning: auto;
+    font-style: italic;
+    font-variant: small-caps;
+    margin: .077rem;
+    padding: .733rem;
+}
+h3{
+    background-color: rgb(47, 23, 131);
+    border-radius: .23rem;
+    border: 3rem rgb(0,5,7);
+    box-sizing: border-box;
+    color: seashell;
+    font-family: 'Reenie Beanie', cursive;
+    font-kerning: auto;
+    font-style: italic;
     font-variant: small-caps;
     margin: .077rem;
     padding: .733rem;
@@ -56,7 +68,9 @@ h4{
     font-size: 1rem;
     margin: .113rem;
 }
-
+h5{
+    margin: .113rem;
+}
 input [type="email"]{
     background-color: rgb(51,37,13);
 }
@@ -69,9 +83,9 @@ li,ul{
 }
 p{
     background-color: rgb(7, 31, 129);
-    border: .21247rem rgb(0, 17, 13);
-    border-style:solid;
     border-radius: .29rem;
+    border-style:solid;
+    border: .21247rem rgb(0, 17, 13);
     color:seashell;
     font-family: 'Yellowtail', 'fantasy';
     font-kerning: auto;
@@ -81,90 +95,58 @@ p{
     initial-letter: bold;
     line-height: 1.323rem;
     margin-bottom:.0123rem;
-    padding:.0623rem;
     margin: 0.0169rem;
-    text-indent: .331rem;
+    padding:.0623rem;
     text-align: left;
+    text-indent: .331rem;
     word-spacing: .713rem;
 }
 section{
     background-color: rgb(6, 1, 23);
     border-radius: .29rem;
     color: seashell;
-    text-align: left;
     font-family: 'Yellowtail','fantasy';
     font-size: 1.23rem;
     margin: .113rem;
+    text-align: left;
     width: 37%;
 }
-
 section div{
     width:37%;
 }
-
-.box-1{
-    background-color:rgb(13,177,177);
-    position:relative;
-    left: .18223rem;
-    width: .12321rem;
-    z-index:443;
-}
-.box-2{
-    background-color: rgb(2,2,2);
-    height:9.321rem;
-    position: sticky;
-    top: 1.999rem;
-    width:29.2123rem;
-    z-index:11;
-}
-.box-3{
-    background-color: rgb(253,83,53);
-    position: relative;
-    z-index:103;
-}
-
-.container{
-    background-color:rgb(79,199,255);
-    width: 4.123rem;
-    height:3.7123rem;
-    position:absolute;
-    top:-9999999999999999999px;
-}
-.cube{
-    width:.993rem;
-    height: .6723rem;
-    font-size: 1.34123rem;
-    color: white;
-    position:absolute;
+.fishmenupics{
+    background-color: seashell;
+    border-radius: .23rem;
+    border-style:groove;
+    box-sizing: border-box;
+    height: 150px;
 }
 .float_container{
     background-color: rgb(237,253,253);
 }
 .float_left{
     background-color: rgb(253,67,0);
-    width: 7.321rem;
-    height: 7.321rem;
     float: left;
+    height: 7.321rem;
+    width: 7.321rem;
+}
+.h4menu{
+    font:bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-kerning: auto;
+    font-size: 1.731rem;
 }
 .special{
     background-color: seashell;
     color: rgb(253,27,163);
-}
-.upview-content a{
-    display: none;
-}
-.upview:hover .upview-content a{
-    display:block;
 }
 #list-item{
     background-color: seashell;
     color: rgb(5,53,41);
 }
 #thumbs {   
-
     margin-left: auto; 
     margin-right: auto;
-
      text-align: center;
     -ms-text-justify: distribute-all-lines;
     text-justify: distribute-all-lines;
