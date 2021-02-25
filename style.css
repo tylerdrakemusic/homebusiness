@@ -28,7 +28,7 @@ h1{
     flex-flow: wrap-reverse;
     font-family: 'Viadoa Libre';
     font-kerning: auto;
-    font-size: 8.13123vh;
+    font-size: 5.13123rem;
     font-style: bold;
     font-variant: small-caps;
     margin:.03193rem;
@@ -131,14 +131,24 @@ section div{
     width: 7.321rem;
 }
 .h4menu{
-    font:bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(63, 61, 61);
+    font-family: 'Yellowtail', 'fantasy';
     font-kerning: auto;
-    font-size: 1.731rem;
+    font-size: 3.2912341357rem;
+    font-variant: small-caps;
+    initial-letter: bold;
 }
 .special{
     background-color: seashell;
     color: rgb(253,27,163);
+}
+.undraw{
+    align-content: space-between;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
 }
 #list-item{
     background-color: seashell;
