@@ -12,6 +12,14 @@ a:hover{
 a:active{
     color:skyblue;
 }
+button[class*=btn] {
+    width: 30px;
+    height: 30px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
 body{
     margin:0 auto;
 }
@@ -138,9 +146,35 @@ section div{
     font-variant: small-caps;
     initial-letter: bold;
 }
+.quantity {
+    padding-top: 3px;
+    margin-right: 60px;
+  }
+  .quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+  }
+.shopping-cart {
+    padding-left: 13px;
+    margin: 13px auto;
+   
+    display: flex;
+    flex-direction: column;
+  }
 .special{
     background-color: seashell;
     color: rgb(253,27,163);
+}
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
 }
 .undraw{
     align-content: space-between;
@@ -166,10 +200,4 @@ section div{
     display: inline-block;
     *display: inline;
     zoom: 1;
-}
-.stretch {
-    width: 100%;
-    display: inline-block;
-    font-size: 0;
-    line-height: 0
 }
