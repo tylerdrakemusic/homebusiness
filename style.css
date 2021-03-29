@@ -23,9 +23,6 @@ button[class*=btn] {
 body{
     margin:0 auto;
 }
-div{
-    text-align:left;
-}
 h1{
     background-blend-mode: hard-light;
     background-color: seashell;
@@ -122,6 +119,18 @@ section{
 section div{
     width:37%;
 }
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+  }
+  
+  .label-warning[href],
+  .badge-warning[href] {
+    background-color: #c67605;
+  }
 .fishmenupics{
     background-color: seashell;
     border-radius: .23rem;
@@ -142,30 +151,35 @@ section div{
     color: rgb(63, 61, 61);
     font-family: 'Yellowtail', 'fantasy';
     font-kerning: auto;
-    font-size: 3.2912341357rem;
+    font-size: 2.2912341357rem;
     font-variant: small-caps;
     initial-letter: bold;
 }
-.quantity {
-    padding-top: 3px;
-    margin-right: 60px;
-  }
-  .quantity input {
+
+.quantity input {
     -webkit-appearance: none;
     border: none;
+    color: #43484D;
+    font-size: 16px;
+    font-weight: 300;
+    pointer-events: none;
     text-align: center;
     width: 32px;
-    font-size: 16px;
-    color: #43484D;
-    font-weight: 300;
   }
-.shopping-cart {
+.menu {
+    align-items: center;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(20px 1fr));
     padding-left: 13px;
     margin: 13px auto;
-   
-    display: flex;
-    flex-direction: column;
+    width: 90%;
   }
+.menuitem{
+    align-content: center;
+    align-items: center;
+    font-size: 1rem;
+    text-align: center;
+}
 .special{
     background-color: seashell;
     color: rgb(253,27,163);
@@ -183,6 +197,14 @@ section div{
     justify-content: space-evenly;
     margin: 0;
     padding: 0;
+}
+#lblCartCount  {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px; 
 }
 #list-item{
     background-color: seashell;
