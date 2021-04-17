@@ -156,6 +156,27 @@ section div{
     initial-letter: bold;
 }
 
+.productsummary{
+    background-color:wheat;
+    border-radius: .29rem;
+    border-style:solid;
+    border: .21247rem rgb(0, 17, 13);
+    color:black;
+    font-family: 'Yellowtail', 'fantasy';
+    font-kerning: auto;
+    font-size: 1.2912341357rem;
+    font-stretch: ultra-expanded;
+    font-variant: small-caps;
+    initial-letter: bold;
+    line-height: 1.323rem;
+    margin-bottom:.0123rem;
+    margin: 0.0169rem;
+    padding:.3623rem;
+    text-align: right;
+    text-indent: .331rem;
+    word-spacing: .713rem;
+}
+
 .quantity input {
     -webkit-appearance: none;
     border: none;
@@ -198,7 +219,7 @@ section div{
     margin: 0;
     padding: 0;
 }
-#lblCartCount  {
+#lblCartCount , #lblDollarCount  {
     font-size: 12px;
     background: #ff0000;
     color: #fff;
