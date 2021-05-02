@@ -1,5 +1,5 @@
 function printOrderSummary() {
-    console.log(sessionStorage);
+    sessionStorage.removeItem("windowref");
   
     var para = document.createElement("p");
     para.className="productsummary";
@@ -7,7 +7,7 @@ function printOrderSummary() {
     for (let i = 0; i < sessionStorage.length; i++) {
       var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
       if(element.subproduct!=null){
-      var node = document.createTextNode(element.product + ' ' + element.subproduct + '........quantity=' + element.value + '\n');
+      var node = document.createTextNode(element.product + ' ' + element.subproduct + '...... quantity=' + element.value + '\n');
       para.appendChild(node);
       para.appendChild(document.createElement('br'));
       

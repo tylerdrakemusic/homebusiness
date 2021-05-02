@@ -1,246 +1,385 @@
-
-/* Preserve a order */s
-a:link{
+/* Preserve a order */
+s a:link {
     color: rgb((123), 229, 131);
 }
-a:visited{
-    color:rgb(255, 51, 187);
+
+a:visited {
+    color: rgb(255, 51, 187);
 }
-a:hover{
-    color:rgb(221,221,221);
+
+a:hover {
+    color: rgb(221, 221, 221);
 }
-a:active{
-    color:skyblue;
+
+a:active {
+    color: skyblue;
 }
+
+body {
+    margin: 0 auto;
+}
+
 button[class*=btn] {
-    width: 30px;
-    height: 30px;
     background-color: #E1E8EE;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
-body{
-    margin:0 auto;
+    border-radius   : 6px;
+    border          : none;
+    cursor          : pointer;
+    height          : 30px;
+    width           : 30px;
 }
-h1{
-    background-blend-mode: hard-light;
-    background-color: seashell;
-    border-radius: .23rem;
-    border-style:ridge;
-    box-sizing: border-box;
-    color:rgb(1,13,17);
-    flex-flow: wrap-reverse;
-    font-family: 'Viadoa Libre';
-    font-kerning: auto;
-    font-size: 5.13123rem;
-    font-style: bold;
-    font-variant: small-caps;
-    margin:.03193rem;
-    padding:.0127rem auto;
-    text-align: center;
-}
-h2::first-letter{
-    font-style:bold;
-}
-h2{
-    background-color: rgb(57, 143, 229);
-    border-radius: .23rem;
-    border: 3rem rgb(0,5,7);
-    box-sizing: border-box;
-    color: seashell;
-    font-family: 'Reenie Beanie', cursive;
-    font-kerning: auto;
-    font-style: italic;
-    font-variant: small-caps;
-    margin: .077rem;
-    padding: .733rem;
-}
-h3{
-    background-color: rgb(47, 23, 131);
-    border-radius: .23rem;
-    border: 3rem rgb(0,5,7);
-    box-sizing: border-box;
-    color: seashell;
-    font-family: 'Reenie Beanie', cursive;
-    font-kerning: auto;
-    font-style: italic;
-    font-variant: small-caps;
-    margin: .077rem;
-    padding: .733rem;
-}
-h4{
-    font-size: 1rem;
-    margin: .113rem;
-}
-h5{
-    margin: .113rem;
-}
-input [type="email"]{
-    background-color: rgb(51,37,13);
-}
-li,ul{
-    background-color: seashell;
-    color: rgb(5,53,41);
-    font-family: 'Viadoa Libre';
-    font-kerning: auto;
-    font-style: normal;
-}
-p{
-    background-color: rgb(7, 31, 129);
-    border-radius: .29rem;
-    border-style:solid;
-    border: .21247rem rgb(0, 17, 13);
-    color:seashell;
-    font-family: 'Yellowtail', 'fantasy';
-    font-kerning: auto;
-    font-size: 1.2912341357rem;
-    font-stretch: ultra-expanded;
-    font-variant: small-caps;
+
+button[class*=nextbtn] {
+    background-color: #55d323;
+    border-radius   : 6px;
+    border          : .21247rem rgb(0, 17, 13);
+    cursor          : pointer;
+    height          : 30px;
+    width           : 200px;
+    border-radius   : .29rem;
+    border-style    : solid;
+
+    color         : black;
+    font-family   : 'Yellowtail', 'fantasy';
+    font-kerning  : auto;
+    font-size     : 1.2912341357rem;
     initial-letter: bold;
-    line-height: 1.323rem;
-    margin-bottom:.0123rem;
-    margin: 0.0169rem;
-    padding:.0623rem;
-    text-align: left;
-    text-indent: .331rem;
-    word-spacing: .713rem;
+    float         : right;
+
 }
-section{
-    background-color: rgb(6, 1, 23);
-    border-radius: .29rem;
-    color: seashell;
-    font-family: 'Yellowtail','fantasy';
-    font-size: 1.23rem;
+
+h1 {
+    background-blend-mode: hard-light;
+    background-color     : seashell;
+    border-radius        : .23rem;
+    border-style         : ridge;
+    box-sizing           : border-box;
+    color                : rgb(1, 13, 17);
+    flex-flow            : wrap-reverse;
+    font-family          : 'Viadoa Libre';
+    font-kerning         : auto;
+    font-size            : 5.13123rem;
+    font-style           : bold;
+    font-variant         : small-caps;
+    margin               : .03193rem;
+    padding              : .0127rem auto;
+    text-align           : center;
+}
+
+h2::first-letter {
+    font-style: bold;
+}
+
+h2 {
+    background-color: rgb(57, 143, 229);
+    border-radius   : .23rem;
+    border          : 3rem rgb(0, 5, 7);
+    box-sizing      : border-box;
+    color           : seashell;
+    font-family     : 'Reenie Beanie', cursive;
+    font-kerning    : auto;
+    font-style      : italic;
+    font-variant    : small-caps;
+    margin          : .077rem;
+    padding         : .733rem;
+}
+
+h3 {
+    background-color: rgb(47, 23, 131);
+    border-radius   : .23rem;
+    border          : 3rem rgb(0, 5, 7);
+    box-sizing      : border-box;
+    color           : seashell;
+    font-family     : 'Reenie Beanie', cursive;
+    font-kerning    : auto;
+    font-style      : italic;
+    font-variant    : small-caps;
+    margin          : .077rem;
+    padding         : .733rem;
+}
+
+h4 {
+    font-size: 1rem;
+    margin   : .113rem;
+}
+
+h5 {
     margin: .113rem;
-    text-align: left;
+}
+
+input[type=text] {
+    width        : 100%;
+    margin-bottom: 20px;
+    padding      : 12px;
+    border       : 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input .valuebtn {
+    width: 100%;
+}
+
+li,
+ul {
+    background-color: seashell;
+    color           : rgb(5, 53, 41);
+    font-family     : 'Viadoa Libre';
+    font-kerning    : auto;
+    font-style      : normal;
+}
+
+p {
+    background-color: rgb(7, 31, 129);
+    border-radius   : .29rem;
+    border-style    : solid;
+    border          : .21247rem rgb(0, 17, 13);
+    color           : seashell;
+    font-family     : 'Yellowtail', 'fantasy';
+    font-kerning    : auto;
+    font-size       : 1.2912341357rem;
+    font-stretch    : ultra-expanded;
+    font-variant    : small-caps;
+    initial-letter  : bold;
+    line-height     : 1.323rem;
+    margin-bottom   : .0123rem;
+    margin          : 0.0169rem;
+    padding         : .0623rem;
+    text-align      : left;
+    text-indent     : .331rem;
+    word-spacing    : .713rem;
+}
+
+section {
+    background-color: rgb(6, 1, 23);
+    border-radius   : .29rem;
+    color           : seashell;
+    font-family     : 'Yellowtail', 'fantasy';
+    font-size       : 1.23rem;
+    margin          : .113rem;
+    text-align      : left;
+    width           : 37%;
+}
+
+section div {
     width: 37%;
 }
-section div{
-    width:37%;
-}
+
 .badge {
-    padding-left: 9px;
-    padding-right: 9px;
+    padding-left         : 9px;
+    padding-right        : 9px;
     -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-  }
-  
-  .label-warning[href],
-  .badge-warning[href] {
+    -moz-border-radius   : 9px;
+    border-radius        : 9px;
+}
+
+.badge-warning[href],
+.label-warning[href] {
     background-color: #c67605;
-  }
-.fishmenupics{
+}
+
+.checkoutbtn {
+    background-color: #04AA6D;
+    color           : white;
+    padding         : 12px;
+    margin          : 10px 0;
+    border          : none;
+    width           : 100%;
+    border-radius   : 3px;
+    cursor          : pointer;
+    font-size       : 17px;
+}
+
+.checkoutbtn:hover {
+    background-color: #45a049;
+}
+
+.col-25 {
+    -ms-flex: 25%;
+    /* IE10 */
+    flex    : 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%;
+    /* IE10 */
+    flex    : 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%;
+    /* IE10 */
+    flex    : 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+
+.container {
+    background-color: #f2f2f2;
+    padding         : 5px 20px 15px 20px;
+    border          : 1px solid lightgrey;
+    border-radius   : 3px;
+}
+
+.fishmenupics {
     background-color: seashell;
-    border-radius: .23rem;
-    border-style:groove;
-    box-sizing: border-box;
-    height: 150px;
+    border-radius   : .23rem;
+    border-style    : groove;
+    box-sizing      : border-box;
+    height          : 150px;
 }
-.float_container{
-    background-color: rgb(237,253,253);
+
+.float_container {
+    background-color: rgb(237, 253, 253);
 }
-.float_left{
-    background-color: rgb(253,67,0);
-    float: left;
-    height: 7.321rem;
-    width: 7.321rem;
+
+.float_left {
+    background-color: rgb(253, 67, 0);
+    float           : left;
+    height          : 7.321rem;
+    width           : 7.321rem;
 }
-.h4menu{
-    color: rgb(63, 61, 61);
-    font-family: 'Yellowtail', 'fantasy';
-    font-kerning: auto;
-    font-size: 2.2912341357rem;
-    font-variant: small-caps;
+
+.h4menu {
+    color         : rgb(63, 61, 61);
+    font-family   : 'Yellowtail', 'fantasy';
+    font-kerning  : auto;
+    font-size     : 2.2912341357rem;
+    font-variant  : small-caps;
     initial-letter: bold;
 }
 
-.productsummary{
-    background-color:wheat;
-    border-radius: .29rem;
-    border-style:solid;
-    border: .21247rem rgb(0, 17, 13);
-    color:black;
-    font-family: 'Yellowtail', 'fantasy';
-    font-kerning: auto;
-    font-size: 1.2912341357rem;
-    font-stretch: ultra-expanded;
-    font-variant: small-caps;
-    initial-letter: bold;
-    line-height: 1.323rem;
-    margin-bottom:.0123rem;
-    margin: 0.0169rem;
-    padding:.3623rem;
-    text-align: right;
-    text-indent: .331rem;
-    word-spacing: .713rem;
+.productsummary {
+    background-color: wheat;
+    border-radius   : .29rem;
+    border-style    : solid;
+    border          : .21247rem rgb(0, 17, 13);
+    color           : black;
+    font-family     : 'Yellowtail', 'fantasy';
+    font-kerning    : auto;
+    font-size       : 1.2912341357rem;
+    font-stretch    : ultra-expanded;
+    font-variant    : small-caps;
+    initial-letter  : bold;
+    line-height     : 1.323rem;
+    margin-bottom   : .0123rem;
+    margin          : 0.0169rem;
+    padding         : .3623rem;
+    text-align      : right;
+    text-indent     : .331rem;
+    word-spacing    : .713rem;
 }
 
 .quantity input {
     -webkit-appearance: none;
-    border: none;
-    color: #43484D;
-    font-size: 16px;
-    font-weight: 300;
-    pointer-events: none;
-    text-align: center;
-    width: 32px;
-  }
+    border            : none;
+    color             : #43484D;
+    font-size         : 16px;
+    font-weight       : 300;
+    pointer-events    : none;
+    text-align        : center;
+    width             : 32px;
+}
+
 .menu {
-    align-items: center;
-    display: grid;
+    align-items       : center;
+    display           : grid;
     grid-template-rows: repeat(auto-fit, minmax(20px 1fr));
-    padding-left: 13px;
-    margin: 13px auto;
-    width: 90%;
-  }
-.menuitem{
+    padding-left      : 13px;
+    margin            : 13px auto;
+    width             : 90%;
+}
+
+.menuitem {
     align-content: center;
-    align-items: center;
-    font-size: 1rem;
-    text-align: center;
+    align-items  : center;
+    font-size    : 1rem;
+    text-align   : center;
 }
-.special{
+
+.special {
     background-color: seashell;
-    color: rgb(253,27,163);
+    color           : rgb(253, 27, 163);
 }
+
+.row {
+    display      : -ms-flexbox;
+    /* IE10 */
+    display      : flex;
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap    : wrap;
+    margin       : 0 -16px;
+}
+
 .stretch {
-    width: 100%;
-    display: inline-block;
-    font-size: 0;
+    width      : 100%;
+    display    : inline-block;
+    font-size  : 0;
     line-height: 0
 }
-.undraw{
-    align-content: space-between;
-    display:flex;
-    flex-flow: row nowrap;
+
+.undraw {
+    align-content  : space-between;
+    display        : flex;
+    flex-flow      : row nowrap;
     justify-content: space-evenly;
-    margin: 0;
-    padding: 0;
+    margin         : 0;
+    padding        : 0;
 }
-#lblCartCount , #lblDollarCount  {
-    font-size: 12px;
-    background: #ff0000;
-    color: #fff;
-    padding: 0 5px;
+
+#lblCartCount,
+#lblDollarCount {
+    font-size     : 12px;
+    background    : #ff0000;
+    color         : #fff;
+    padding       : 0 5px;
     vertical-align: top;
-    margin-left: -10px; 
+    margin-left   : -10px;
 }
-#list-item{
+
+#list-item {
     background-color: seashell;
-    color: rgb(5,53,41);
+    color           : rgb(5, 53, 41);
 }
-#thumbs {   
-    margin-left: auto; 
-    margin-right: auto;
-     text-align: center;
+
+#thumbs {
+    margin-left     : auto;
+    margin-right    : auto;
+    text-align      : center;
     -ms-text-justify: distribute-all-lines;
-    text-justify: distribute-all-lines;
+    text-justify    : distribute-all-lines;
 }
+
 #thumbs a {
     vertical-align: top;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
+    display       : inline-block;
+    *display      : inline;
+    zoom          : 1;
+}
+
+label {
+    margin-bottom: .723rem;
+    margin-top: .723rem;
+    display      : block;
+}
+
+.fa-address-card-o:after,
+.fa-institution::after,
+.fa-name::after {
+    content:" *";
+    color: red;
+  }
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+    .row {
+        flex-direction: column-reverse;
+    }
+
+    .col-25 {
+        margin-bottom: 20px;
+    }
 }
