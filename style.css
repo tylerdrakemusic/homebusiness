@@ -188,8 +188,8 @@ section div {
     font-size       : 17px;
 }
 
-.checkoutbtn:hover {
-    background-color: #45a049;
+.checkoutbtn:disabled{
+    background-color: #b3b8b6;
 }
 
 .col-25 {
@@ -366,8 +366,10 @@ label {
     display      : block;
 }
 
+.credit::after,
 .fa-address-card-o:after,
 .fa-institution::after,
+.fa-phone::after,
 .fa-name::after {
     content:" *";
     color: red;
