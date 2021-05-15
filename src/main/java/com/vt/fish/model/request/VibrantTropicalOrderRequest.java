@@ -1,13 +1,8 @@
 package com.vt.fish.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Validated
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VibrantTropicalOrderRequest {
@@ -31,6 +26,4 @@ public class VibrantTropicalOrderRequest {
     private String shippingCity;
     private String shippingName;
     private String shippingPhone;
-
-
 }
