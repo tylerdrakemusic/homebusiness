@@ -7,7 +7,7 @@ function printOrderSummary() {
     for (let i = 0; i < sessionStorage.length; i++) {
       var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
       if(element.subproduct!=null){
-      var node = document.createTextNode(element.product + ' ' + element.subproduct + '...... quantity=' + element.quantity + '\n');
+      var node = document.createTextNode(element.productName + ' ' + element.subproduct + '...... quantity=' + element.quantity + '\n');
       para.appendChild(node);
       para.appendChild(document.createElement('br'));
       
