@@ -2,12 +2,12 @@ $('.plus-btn').on('click', function (e) {
   e.preventDefault();
   var $this = $(this);
   var $input = $this.closest('div').find('input');
-  var value = parseInt($input.val());
+  var quantity = parseInt($input.val());
   var dollars = (parseInt($this.closest('div').find('h4')[0].textContent.replace(/[^0-9\.]/g, '')));
-  var product = $this.closest('div.menuitem').find('h4')[0].textContent;
+  var productName = $this.closest('div.menuitem').find('h4')[0].textContent;
   var subproduct = $this.closest('div').find('h4')[0].textContent;
-  value = isNaN(value) ? 0 : value;
-  value++;
+  quantity = isNaN(quantity) ? 0 : quantity;
+  quantity++;
 
   var cartTotal = parseInt(sessionStorage.getItem("cartTotal"));
   if (isNaN(cartTotal)) {
@@ -23,13 +23,13 @@ $('.plus-btn').on('click', function (e) {
 
   document.getElementById('lblCartCount').textContent = cartTotal;
   document.getElementById('lblDollarCount').textContent = '$' + (dollarTotal);
-  $input.val(value);
+  $input.val(quantity);
 
   var entry = {
-    "product": product,
+    "productName": productName,
     "subproduct": subproduct,
     "dollars": dollars,
-    "value": value
+    "quantity": quantity
   };
 
   sessionStorage.setItem("cartTotal", cartTotal);
@@ -42,15 +42,14 @@ $('.minus-btn').on('click', function (e) {
   e.preventDefault();
   var $this = $(this);
   var $input = $this.closest('div').find('input');
-  var value = parseInt($input.val());
+  var quantity = parseInt($input.val());
   var dollars = (parseInt($this.closest('div').find('h4')[0].textContent.replace(/[^0-9\.]/g, '')));
-  var product = $this.closest('div.menuitem').find('h4')[0].textContent;
+  var productName = $this.closest('div.menuitem').find('h4')[0].textContent;
   var subproduct = $this.closest('div').find('h4')[0].textContent;
 
-  value = isNaN(value) ? 0 : value;
-  console.log(value);
-  if (value > 0) {
-    value--;
+  quantity = isNaN(quantity) ? 0 : quantity;
+  if (quantity > 0) {
+    quantity--;
     var cartTotal = parseInt(sessionStorage.getItem("cartTotal"));
     if (isNaN(cartTotal)) {
       cartTotal = 0;
@@ -63,13 +62,13 @@ $('.minus-btn').on('click', function (e) {
     dollarTotal = dollarTotal - dollars;
     document.getElementById('lblCartCount').textContent = cartTotal;
     document.getElementById('lblDollarCount').textContent = '$' + (dollarTotal);
-    $input.val(value);
+    $input.val(quantity);
 
     var entry = {
-      "product": product,
+      "productName": productName,
       "subproduct": subproduct,
       "dollars": dollars,
-      "value": value
+      "quantity": quantity
     };
     sessionStorage.setItem("cartTotal", cartTotal);
     sessionStorage.setItem("dollarTotal", dollarTotal);

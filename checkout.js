@@ -7,7 +7,7 @@ function printOrderSummary() {
     for (let i = 0; i < sessionStorage.length; i++) {
       var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
       if(element.subproduct!=null){
-      var node = document.createTextNode(element.product + ' ' + element.subproduct + '...... quantity=' + element.value + '\n');
+      var node = document.createTextNode(element.product + ' ' + element.subproduct + '...... quantity=' + element.quantity + '\n');
       para.appendChild(node);
       para.appendChild(document.createElement('br'));
       
@@ -30,7 +30,7 @@ function printOrderSummary() {
     shipCheckBox.onclick = function(){
       checkboxShipping();
     };
-    var shipdiv = document.getElementById("shipdiv");
+    var shipdiv = document.getElementById("shippingdiv");
   
     if (shipCheckBox.checked == false){
       shipdiv.style.display = "block";
@@ -38,21 +38,63 @@ function printOrderSummary() {
       shipdiv.style.display = "none";
     }
     checkboxPolicy();
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', handleSubmit);
   }
 
   function checkboxPolicy(){
-    var policyCheckBox = document.getElementById("policycheckbox");
-    var checkoutCheckBox = document.getElementById("checkoutcheckbox");
-    policyCheckBox.onclick = function (){
+    var policyCheckbox = document.getElementById("policyCheckbox");
+    var checkoutCheckbox = document.getElementById("checkoutCheckbox");
+    policyCheckbox.onclick = function (){
       checkboxPolicy();
     }
-    checkoutCheckBox.onclick = function(){
+    checkoutCheckbox.onclick = function(){
       checkboxPolicy();
     }
-    if(policyCheckBox.checked==true && checkoutCheckBox.checked==true){
+    if(policyCheckbox.checked==true && checkoutCheckbox.checked==true){
       document.getElementById("checkout").disabled = false;
     }
     else{
       document.getElementById("checkout").disabled = true;
     }
   }
+
+  function handleSubmit(event){
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const requestBody = Object.fromEntries(data.entries());
+    var products = {
+      products: []
+    };
+    for (let i = 0; i < sessionStorage.length; i++) {
+      var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
+      if(element.hasOwnProperty('productName')){
+        delete element["subProduct"];
+        products.products.push(element);
+      }
+    }
+    requestBody.products = products.products;
+    userAction(requestBody);
+  }
+
+  const userAction = async (requestBody) => {
+    console.log( requestBody.valueOf() );
+    const response = await fetch('https://vibrant-tropical-fish-service.herokuapp.com/order', {
+      method: 'POST',
+      body: JSON.stringify(requestBody), 
+      headers: {
+        'Content-Type': 'application/json',
+        'CorrelationId': createUUID()
+      }
+    });
+    const responseJson = await response.json();
+    console.log(responseJson);
+  }
+
+  function createUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+       return v.toString(16);
+    });
+ }
