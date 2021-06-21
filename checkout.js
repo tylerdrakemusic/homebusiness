@@ -79,7 +79,7 @@ function printOrderSummary() {
   }
 
   const userAction = async (requestBody) => {
-    console.log( requestBody.valueOf() );
+    //console.log( requestBody.valueOf() );
     const response = await fetch('http://localhost:8080/order', {
       method: 'POST',
       body: JSON.stringify(requestBody), 
@@ -95,7 +95,10 @@ function printOrderSummary() {
         parent.removeChild(parent.firstChild);
     }
       parent.appendChild(document.createTextNode(responseText));
-      console.log(responseText);
+      //console.log(responseText);
+    }
+    else if(response.status === 201){
+      document.getElementById("feedback").appendChild(document.createTextNode("Thank you for your request!  Website is still under construction, your credit card will not be processed."));
     }
     
   }
