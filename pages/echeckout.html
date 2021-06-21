@@ -48,7 +48,7 @@
               <input type="text" id="billingEmail" name="billingEmail" placeholder="john@example.com">
               <label for="adr1"><i class="fa fa-address-card-o"></i> Street Address 1</label>
               <input type="text" id="billingAddress" name="billingAddress" placeholder="542 W. 15th Street">
-              <label for="adr2"><i class="fa fa-address-card-o"></i> Street Address 2</label>
+              <label for="adr2"><i class="fa fa-address-card-o-2"></i> Street Address 2</label>
               <input type="text" id="billingAddress2" name="billingAddress2" placeholder="Building 2">
               <label for="city"><i class="fa fa-institution"></i> City</label>
               <input type="text" id="billingCity" name="billingCity" placeholder="Denver">
@@ -113,12 +113,14 @@
             </div>
 
           </div>
+
           <label>
             <input type="checkbox" id="policyCheckbox" name="policyCheckbox"> <a href="policy.html">I agree to the terms in policy.</a>
           </label>
-          <label>
             <input type="checkbox" id="checkoutCheckbox" name="checkoutCheckbox"> I'm ready to order.
           </label>
+          <div class="helpred" id="helpinput">
+          </div>
           <input type="submit" id="checkout" value="Place Order" class="checkoutbtn" disabled>
         </form>
       </div>

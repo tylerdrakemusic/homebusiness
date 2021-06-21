@@ -80,7 +80,7 @@ function printOrderSummary() {
 
   const userAction = async (requestBody) => {
     console.log( requestBody.valueOf() );
-    const response = await fetch('https://vibrant-tropical-fish-service.herokuapp.com/order', {
+    const response = await fetch('http://localhost:8080/order', {
       method: 'POST',
       body: JSON.stringify(requestBody), 
       headers: {
@@ -88,8 +88,16 @@ function printOrderSummary() {
         'CorrelationId': createUUID()
       }
     });
-    const responseJson = await response.json();
-    console.log(responseJson);
+    const responseText = await response.text();
+    if(response.status === 400){
+      var parent = document.getElementById("helpinput");
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+      parent.appendChild(document.createTextNode(responseText));
+      console.log(responseText);
+    }
+    
   }
 
   function createUUID() {

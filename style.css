@@ -251,6 +251,29 @@ section div {
     initial-letter: bold;
 }
 
+.helpred {
+    border-radius   : .29rem;
+    border-style    : solid;
+    border          : .21247rem rgb(0, 17, 13);
+    color           : rgb(253, 23, 23);
+    font-family     : '', 'fantasy';
+    font-kerning    : auto;
+    font-size       : 1.2912341357rem;
+    font-stretch    : ultra-expanded;
+    font-weight:900;
+    font-variant    : small-caps;
+    initial-letter  : bold;
+    line-height     : 1.323rem;
+    margin-bottom   : .0123rem;
+    margin          : 0.0169rem;
+    padding         : .3623rem;
+    text-align      : center;
+    text-indent     : .331rem;
+    text-transform: capitalize;
+    word-spacing    : .713rem;
+
+}
+
 .productsummary {
     background-color: wheat;
     border-radius   : .29rem;
