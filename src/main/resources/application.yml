@@ -1,0 +1,4 @@
+spring:
+  application.name: FishApplication
+  data.mongodb.uri: mongodb+srv://vt-service:oarQOT2nBq6xLK7U@developmentcluster.kchsj.mongodb.net/vt-dev?retryWrites=true&w=majority
+  data.mongodb.database: vt-dev

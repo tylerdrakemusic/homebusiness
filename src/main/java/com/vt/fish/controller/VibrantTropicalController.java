@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +25,10 @@ public class VibrantTropicalController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity order(
+    public ResponseEntity<String> order(
             @RequestHeader(value = "CorrelationId") String correlationId,
-            @RequestBody @Valid VibrantTropicalOrderRequest vibrantTropicalOrderRequest){
-
-        return vibrantTropicalService.serviceVibrantTropicalRequest(vibrantTropicalOrderRequest);
+            @Valid @RequestBody VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult){
+        vibrantTropicalOrderRequest.setCorrelationId(correlationId);
+        return vibrantTropicalService.serviceVibrantTropicalRequest(vibrantTropicalOrderRequest, bindingResult);
     }
 }
