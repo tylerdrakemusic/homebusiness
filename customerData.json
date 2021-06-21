@@ -1,0 +1,23 @@
+{
+    "customerData": [
+        {
+            "firstName": "Tom",
+            "lastName": "Shor",
+            "phone": "3032578095"
+        },
+        {
+            "firstName": "Vicki",
+            "lastName": "Ibison",
+            "phone": "3036175554"
+        },
+        {
+            "firstName": "Tamara",
+            "lastName": "McCarthy",
+            "phone": "7203087310",
+            "shippingAddress" : "16481 Martingale Dr",
+            "shippingCity": "Parker",
+            "shippingState" : "Colorado",
+            "shippingZip" : "80134"
+        }
+    ]
+}
