@@ -49,6 +49,8 @@ public class VibrantTropicalOrderRequest {
     private String shippingAddress;
     private String shippingAddress2;
     private String shippingCity;
+    private String shippingState;
+    private String shippingZip;
     private String shippingName;
     private String shippingPhone;
 
@@ -146,11 +148,43 @@ public class VibrantTropicalOrderRequest {
         return shippingCity;
     }
 
+    public String getShippingState() {return shippingState;}
+
+    public String getShippingZip() {return shippingZip;}
+
     public String getShippingName() {
         return shippingName;
     }
 
     public String getShippingPhone() {
         return shippingPhone;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setShippingAddress2(String shippingAddress2) {
+        this.shippingAddress2 = shippingAddress2;
+    }
+
+    public void setShippingCity(String shippingCity) {
+        this.shippingCity = shippingCity;
+    }
+
+    public void setShippingState(String shippingState) {
+        this.shippingState = shippingState;
+    }
+
+    public void setShippingZip(String shippingZip) {
+        this.shippingZip = shippingZip;
+    }
+
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
+
+    public void setShippingPhone(String shippingPhone) {
+        this.shippingPhone = shippingPhone;
     }
 }
