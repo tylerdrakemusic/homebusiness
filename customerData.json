@@ -11,10 +11,24 @@
             "phone": "3036175554"
         },
         {
+            "firstName": "Jackie",
+            "lastName": "Grant",
+            "phone": "7203090931"
+        },
+        {
             "firstName": "Tamara",
             "lastName": "McCarthy",
             "phone": "7203087310",
             "shippingAddress" : "16481 Martingale Dr",
+            "shippingCity": "Parker",
+            "shippingState" : "Colorado",
+            "shippingZip" : "80134"
+        },
+        {
+            "firstName": "Calvin",
+            "lastName": "Weng",
+            "phone": "3032171460",
+            "shippingAddress" : "16181 Bluebonnet Dr",
             "shippingCity": "Parker",
             "shippingState" : "Colorado",
             "shippingZip" : "80134"
