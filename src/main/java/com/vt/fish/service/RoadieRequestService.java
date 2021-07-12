@@ -6,24 +6,18 @@ import com.vt.fish.model.roadierequest.*;
 import com.vt.fish.model.roadieresponse.EstimateResponse;
 import com.vt.fish.model.roadieresponse.RoadieErrorResponse;
 import com.vt.fish.utility.DateUtility;
-import io.netty.channel.ChannelOption;
-import io.netty.handler.timeout.ReadTimeoutHandler;
-import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import reactor.netty.http.client.HttpClient;
 
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class RoadieRequestService {
@@ -56,7 +50,8 @@ public class RoadieRequestService {
                 .flatMap( clientResponse -> {
                     //Error handling
                     if ( clientResponse.statusCode()== HttpStatus.BAD_REQUEST) {
-                        return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
+
+                      return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
                                 roadieErrorResponse1 -> Mono.error(new RuntimeException(roadieErrorResponse1.toString()))
                         );
                     }
@@ -68,8 +63,9 @@ public class RoadieRequestService {
     public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest){
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
         for(Product product:vibrantTropicalOrderRequest.getProducts()){
+            //todo: Add Bag split logic on Roadie Quantity
             roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
-                    product.getProductName(), product.getDollars(), 4, 2, 8,1, 1));
+                    product.getProductName(), product.getDollars()* product.getQuantity(), 4, 2, 8,1, 1));
         }
 
         RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home","1",HOME_STREET,null,HOME_CITY,HOME_STATE,HOME_ZIP, null,null);
@@ -86,7 +82,7 @@ public class RoadieRequestService {
                 .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(),2));
         RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter,end);
 
-        return new EstimateRequest(roadieItemArrayList,pickupLocation,deliveryLocation,pickupAfter, roadieTimeWindow);
+        return new EstimateRequest(roadieItemArrayList,pickupLocation,deliveryLocation,pickupAfter, roadieTimeWindow, vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
     }
 
 

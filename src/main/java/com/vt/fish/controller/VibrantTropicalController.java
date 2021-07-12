@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 
@@ -27,7 +28,8 @@ public class VibrantTropicalController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> order(
             @RequestHeader(value = "CorrelationId") String correlationId,
-            @Valid @RequestBody VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult){
+            @Valid @RequestBody VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult, WebRequest webRequest){
+        webRequest.setAttribute("VibrantTropicalRequestId",vibrantTropicalOrderRequest.getVibrantTropicalRequestId(),1);
         vibrantTropicalOrderRequest.setCorrelationId(correlationId);
         return vibrantTropicalService.serviceVibrantTropicalRequest(vibrantTropicalOrderRequest, bindingResult);
     }

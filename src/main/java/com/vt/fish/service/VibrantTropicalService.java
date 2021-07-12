@@ -24,44 +24,58 @@ public class VibrantTropicalService {
         this.roadieRequestService = roadieRequestService;
     }
 
-    public ResponseEntity<String> serviceVibrantTropicalRequest (VibrantTropicalOrderRequest vibrantTropicalOrderRequest,BindingResult bindingResult) {
+    public ResponseEntity<String> serviceVibrantTropicalRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult) {
         databaseService.saveVibrantTropicalOrderRequest(vibrantTropicalOrderRequest);
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             List<String> messages = new ArrayList<>();
-            for(FieldError fieldError: bindingResult.getFieldErrors())
-            {
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
                 messages.add(StringUtility.splitCamelCase(fieldError.getField()) + ": " + fieldError.getDefaultMessage());
             }
-            return new ResponseEntity<>(messages.toString(),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(messages.toString(), HttpStatus.BAD_REQUEST);
         }
         // Enhanced input validation
-            //Credit card validation
+        //todo: credit card validation
 
-        // Clone shipping
-        if(vibrantTropicalOrderRequest.getSameAddress().equals("on")){
-            cloneShipping(vibrantTropicalOrderRequest);
-        }
-        // Build Estimate
+        massageRequest(vibrantTropicalOrderRequest);
+
         EstimateRequest estimateRequest = roadieRequestService.buildEstimateRequest(vibrantTropicalOrderRequest);
-        //Store estimate request
+        databaseService.saveEstimateRequest(estimateRequest);
         EstimateResponse estimateResponse = roadieRequestService.makeEstimateRequest(estimateRequest);
-        //Store estimate response
 
-        // async Roadie call, store outbound inbound
-        // async Payment call, store outbound inbound
-        // async Tax call, store outbound inbound
-        // Store vibResponse
-        // notify Tyler
-        return new ResponseEntity<>("",HttpStatus.CREATED);
+        estimateResponse.setCorrelationId(vibrantTropicalOrderRequest.getCorrelationId());
+        estimateResponse.setVibrantTropicalRequestId(vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
+        databaseService.saveEstimateResponse(estimateResponse);
+
+
+        //todo: outOfDeliveryRange logic
+        if(Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()){
+            throw new RuntimeException("Order cost effective.  Try picking up closer or ordering more product.");
+        }
+
+        // todo: async Roadie call, store outbound inbound
+        // todo: async Stripe Payment call, store outbound inbound
+        // todo: async Tax call, store outbound inbound
+        // todo: store vibResponse
+        // todo: notify Tyler
+        return new ResponseEntity<>("", HttpStatus.CREATED);
+    }
+
+    private void massageRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
+        if (vibrantTropicalOrderRequest.getProducts() == null) {
+            vibrantTropicalOrderRequest.setProducts(new ArrayList<>());
+        }
+        cloneShipping(vibrantTropicalOrderRequest);
     }
 
     private void cloneShipping(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        vibrantTropicalOrderRequest.setShippingName(vibrantTropicalOrderRequest.getBillingName());
-        vibrantTropicalOrderRequest.setShippingPhone(vibrantTropicalOrderRequest.getBillingPhone());
-        vibrantTropicalOrderRequest.setShippingAddress(vibrantTropicalOrderRequest.getBillingAddress());
-        vibrantTropicalOrderRequest.setShippingAddress2(vibrantTropicalOrderRequest.getBillingAddress2());
-        vibrantTropicalOrderRequest.setShippingCity(vibrantTropicalOrderRequest.getBillingCity());
-        vibrantTropicalOrderRequest.setShippingState(vibrantTropicalOrderRequest.getBillingState());
-        vibrantTropicalOrderRequest.setShippingZip(vibrantTropicalOrderRequest.getBillingZip());
+        if (!"off".equals(vibrantTropicalOrderRequest.getSameAddress())) {
+            vibrantTropicalOrderRequest.setShippingName(vibrantTropicalOrderRequest.getBillingName());
+            vibrantTropicalOrderRequest.setShippingPhone(vibrantTropicalOrderRequest.getBillingPhone());
+            vibrantTropicalOrderRequest.setShippingAddress(vibrantTropicalOrderRequest.getBillingAddress());
+            vibrantTropicalOrderRequest.setShippingAddress2(vibrantTropicalOrderRequest.getBillingAddress2());
+            vibrantTropicalOrderRequest.setShippingCity(vibrantTropicalOrderRequest.getBillingCity());
+            vibrantTropicalOrderRequest.setShippingState(vibrantTropicalOrderRequest.getBillingState());
+            vibrantTropicalOrderRequest.setShippingZip(vibrantTropicalOrderRequest.getBillingZip());
+        }
     }
 }

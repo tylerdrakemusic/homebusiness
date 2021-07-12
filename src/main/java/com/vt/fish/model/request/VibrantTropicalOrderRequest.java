@@ -2,7 +2,6 @@ package com.vt.fish.model.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.validation.annotation.Validated;
 
@@ -10,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 @Document(collection = "collection")
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,7 +33,6 @@ public class VibrantTropicalOrderRequest {
     @NotEmpty
     private String cardNumber;
     private String checkoutCheckbox;
-    @Id
     private String correlationId;
     @NotEmpty
     private String cvv;
@@ -44,6 +43,8 @@ public class VibrantTropicalOrderRequest {
     private String policyCheckbox;
     private ArrayList<Product> products;
     @JsonIgnore
+    private final String vibrantTropicalRequestId;
+    @JsonIgnore
     private Date timeStamp;
     private String sameAddress;
     private String shippingAddress;
@@ -53,6 +54,10 @@ public class VibrantTropicalOrderRequest {
     private String shippingZip;
     private String shippingName;
     private String shippingPhone;
+
+    public VibrantTropicalOrderRequest() {
+        vibrantTropicalRequestId = UUID.randomUUID().toString();
+    }
 
     public String getBillingAddress() {
         return billingAddress;
@@ -101,6 +106,10 @@ public class VibrantTropicalOrderRequest {
     }
 
     public void setCorrelationId(String correlationId) {
+        if(correlationId==null){
+            UUID uuid = UUID.randomUUID();
+            correlationId = uuid.toString();
+        }
         this.correlationId = correlationId;
     }
 
@@ -160,6 +169,10 @@ public class VibrantTropicalOrderRequest {
         return shippingPhone;
     }
 
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
     public void setShippingAddress(String shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
@@ -186,5 +199,17 @@ public class VibrantTropicalOrderRequest {
 
     public void setShippingPhone(String shippingPhone) {
         this.shippingPhone = shippingPhone;
+    }
+
+    public String getVibrantTropicalRequestId() {
+        return vibrantTropicalRequestId;
+    }
+
+    public double getTotalOrderPrice(){
+        double price = 0;
+        for(Product product:this.getProducts()){
+            price += product.getDollars()*product.getQuantity();
+        }
+        return price;
     }
 }
