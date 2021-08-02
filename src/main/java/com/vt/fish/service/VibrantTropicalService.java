@@ -1,8 +1,11 @@
 package com.vt.fish.service;
 
+import com.vt.fish.controller.special.OrderOutOfRangeException;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
+import com.vt.fish.model.roadierequest.ShipmentRequest;
 import com.vt.fish.model.roadieresponse.EstimateResponse;
+import com.vt.fish.model.roadieresponse.ShipmentResponse;
 import com.vt.fish.utility.StringUtility;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,8 @@ import org.springframework.validation.FieldError;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class VibrantTropicalService {
@@ -49,16 +54,28 @@ public class VibrantTropicalService {
 
         //todo: outOfDeliveryRange logic
         if(Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()){
-            throw new RuntimeException("Order cost effective.  Try picking up closer or ordering more product.");
+            throw new OrderOutOfRangeException("Order cost efficiency invalid.  Try a pick up location close to Lincoln & Chambers in Parker, Colorado or by ordering more product.");
         }
 
         // todo: async Roadie call, store outbound inbound
+        ShipmentRequest shipmentRequest = roadieRequestService.buildShipmentRequest(vibrantTropicalOrderRequest);
+        databaseService.saveShipmentRequest(shipmentRequest);
+        CompletableFuture <ShipmentResponse> shipmentResponse = roadieRequestService.makeShipmentRequest(shipmentRequest);
         // todo: async Stripe Payment call, store outbound inbound
         // todo: async Tax call, store outbound inbound
-        // todo: store vibResponse
+
+        CompletableFuture<Void> allCompleted = CompletableFuture.allOf(shipmentResponse);
+        allCompleted.join();
+        try {
+            databaseService.saveShipmentResponse(shipmentResponse.get());
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException("3rd Party Calls Failed");
+        }
+
         // todo: notify Tyler
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }
+
 
     private void massageRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         if (vibrantTropicalOrderRequest.getProducts() == null) {

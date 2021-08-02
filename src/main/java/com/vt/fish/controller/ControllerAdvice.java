@@ -1,5 +1,6 @@
 package com.vt.fish.controller;
 
+import com.vt.fish.controller.special.OrderOutOfRangeException;
 import com.vt.fish.model.response.SubordinateResponse;
 import com.vt.fish.service.DatabaseService;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,9 @@ public class ControllerAdvice {
     }
 
     @ResponseBody
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Vibrant Tropical backend service error")
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<SubordinateResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, WebRequest webRequest) {
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({HttpMessageNotReadableException.class, OrderOutOfRangeException.class})
+    public ResponseEntity<SubordinateResponse> handleBadRequest(RuntimeException e, WebRequest webRequest) {
         subordinateResponse.setCorrelationId(webRequest.getHeader("CorrelationId"));
         subordinateResponse.setMessage(e.getMessage());
         subordinateResponse.setVibrantTropicalRequestId((String) webRequest.getAttribute("VibrantTropicalRequestId",1));
@@ -35,23 +36,24 @@ public class ControllerAdvice {
     }
 
     @ResponseBody
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error communicating with 3rd Party Service")
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(WebClientException.class)
-    public void handleWebClientException(WebClientException e, WebRequest webRequest) {
+    public ResponseEntity<SubordinateResponse> handleWebClientException(WebClientException e, WebRequest webRequest) {
         subordinateResponse.setCorrelationId(webRequest.getHeader("CorrelationId"));
         subordinateResponse.setMessage(e.getMessage());
         subordinateResponse.setVibrantTropicalRequestId((String) webRequest.getAttribute("VibrantTropicalRequestId",1));
         databaseService.saveSubordinateResponse(subordinateResponse);
+        return new ResponseEntity<>(subordinateResponse,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseBody
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error")
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<SubordinateResponse>  handleException(Exception e, WebRequest webRequest) {
         subordinateResponse.setCorrelationId(webRequest.getHeader("CorrelationId"));
         subordinateResponse.setMessage(e.getMessage());
         subordinateResponse.setVibrantTropicalRequestId((String) webRequest.getAttribute("VibrantTropicalRequestId",1));
         databaseService.saveSubordinateResponse(subordinateResponse);
-        return new ResponseEntity<>(subordinateResponse,HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(subordinateResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
