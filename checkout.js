@@ -98,6 +98,10 @@ function printOrderSummary() {
       //console.log(responseText);
     }
     else if(response.status === 201){
+      var parent = document.getElementById("helpinput");
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
       document.getElementById("feedback").appendChild(document.createTextNode("Thank you for your request!  Website is still under construction, your credit card will not be processed."));
     }
     
