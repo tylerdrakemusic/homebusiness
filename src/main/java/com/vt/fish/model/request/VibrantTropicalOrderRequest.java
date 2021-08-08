@@ -55,6 +55,7 @@ public class VibrantTropicalOrderRequest {
     private String shippingName;
     private String shippingPhone;
 
+    //todo unit test:
     public VibrantTropicalOrderRequest() {
         vibrantTropicalRequestId = UUID.randomUUID().toString();
     }
@@ -83,7 +84,9 @@ public class VibrantTropicalOrderRequest {
         return billingPhone;
     }
 
-    public String getBillingState() { return billingState; }
+    public String getBillingState() {
+        return billingState;
+    }
 
     public String getBillingZip() {
         return billingZip;
@@ -105,8 +108,9 @@ public class VibrantTropicalOrderRequest {
         return correlationId;
     }
 
+    //todo: unit test
     public void setCorrelationId(String correlationId) {
-        if(correlationId==null){
+        if (correlationId == null) {
             UUID uuid = UUID.randomUUID();
             correlationId = uuid.toString();
         }
@@ -157,9 +161,13 @@ public class VibrantTropicalOrderRequest {
         return shippingCity;
     }
 
-    public String getShippingState() {return shippingState;}
+    public String getShippingState() {
+        return shippingState;
+    }
 
-    public String getShippingZip() {return shippingZip;}
+    public String getShippingZip() {
+        return shippingZip;
+    }
 
     public String getShippingName() {
         return shippingName;
@@ -205,10 +213,11 @@ public class VibrantTropicalOrderRequest {
         return vibrantTropicalRequestId;
     }
 
-    public double getTotalOrderPrice(){
+    //todo: unit test
+    public double getTotalOrderPrice() {
         double price = 0;
-        for(Product product:this.getProducts()){
-            price += product.getDollars()*product.getQuantity();
+        for (Product product : this.getProducts()) {
+            price += product.getDollars() * product.getQuantity();
         }
         return price;
     }

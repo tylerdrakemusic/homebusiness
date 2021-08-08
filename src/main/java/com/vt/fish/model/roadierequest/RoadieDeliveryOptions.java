@@ -11,7 +11,8 @@ public class RoadieDeliveryOptions {
         this.extraCompensation = extraCompensation;
     }
 
-    @JsonProperty("signature_requred")
+    //todo Add to Policy
+    @JsonProperty("signature_required")
     private final boolean signatureRequired;
 
     @JsonProperty("notifications_enabled")

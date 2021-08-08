@@ -10,6 +10,7 @@ public class DateUtility {
         calendar.add(Calendar.HOUR_OF_DAY, hours);
         return calendar.getTime();
     }
+
     public static Date addMinutesToJavaUtilDate(Date date, int minutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

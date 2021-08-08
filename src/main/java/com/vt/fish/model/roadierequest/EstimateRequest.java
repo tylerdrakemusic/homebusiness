@@ -71,4 +71,6 @@ public class EstimateRequest {
     public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    public String getVibrantTropicalRequestId() { return vibrantTropicalRequestId; }
 }

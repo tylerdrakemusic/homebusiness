@@ -5,6 +5,15 @@ public class Product {
     private String productName;
     private int quantity;
 
+    public Product() {
+    }
+
+    public Product(double dollars, String productName, int quantity) {
+        this.dollars = dollars;
+        this.productName = productName;
+        this.quantity = quantity;
+    }
+
     public double getDollars() {
         return dollars;
     }
