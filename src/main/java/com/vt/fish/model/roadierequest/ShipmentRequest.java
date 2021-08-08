@@ -9,7 +9,7 @@ import java.util.Date;
 @Document(collection = "collection")
 public class ShipmentRequest {
 
-    public ShipmentRequest(String referenceId, String idempotencyKey, String alternateId1, String alternateId2, String description, ArrayList<RoadieItem> roadieItemList, RoadieLocation pickupLocation, RoadieLocation deliveryLocation, String pickupAfter, RoadieTimeWindow roadieTimeWindow, RoadieDeliveryOptions roadieDeliveryOptions) {
+    public ShipmentRequest(String referenceId, String idempotencyKey, String alternateId1, String alternateId2, String description, ArrayList<RoadieItem> roadieItemList, RoadieLocation pickupLocation, RoadieLocation deliveryLocation, String pickupAfter, RoadieTimeWindow roadieTimeWindow, RoadieDeliveryOptions roadieDeliveryOptions, String vibrantTropicalRequestId) {
         this.referenceId = referenceId;
         this.idempotencyKey = idempotencyKey;
         this.alternateId1 = alternateId1;
@@ -21,6 +21,7 @@ public class ShipmentRequest {
         this.pickupAfter = pickupAfter;
         this.roadieTimeWindow = roadieTimeWindow;
         this.roadieDeliveryOptions = roadieDeliveryOptions;
+        this.vibrantTropicalRequestId = vibrantTropicalRequestId;
     }
 
     @JsonProperty("reference_id")
@@ -55,6 +56,8 @@ public class ShipmentRequest {
 
     @JsonProperty("options")
     private final RoadieDeliveryOptions roadieDeliveryOptions;
+
+    private final String vibrantTropicalRequestId;
 
     private Date timeStamp;
 
@@ -109,4 +112,7 @@ public class ShipmentRequest {
     public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    public String getVibrantTropicalRequestId() { return vibrantTropicalRequestId; }
+
 }

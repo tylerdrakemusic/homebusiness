@@ -25,6 +25,8 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class RoadieRequestService {
 
+
+    //todo: move to configuration
     private static final String LIVE_TROPICAL_FISH = "Live Tropical Fish";
     private static final String HOME_STREET = "10292 Tall Oaks Circle";
     private static final String HOME_CITY = "Parker";
@@ -35,112 +37,115 @@ public class RoadieRequestService {
 
     private static final String AUTHORIZATION_TYPE = "Bearer ";
     private static final String ROADIE_SANDBOX_URL = "https://connect-sandbox.roadie.com";
-    private  static final String ROADIE_SANDBOX_API_KEY = "6b09744affd183c29e8d699ec5917085b41142ca";
+    private static final String ROADIE_SANDBOX_API_KEY = "6b09744affd183c29e8d699ec5917085b41142ca";
 
     private static final String ESTIMATE_PATH = "/v1/estimates";
+    private static final String SHIPMENT_PATH = "/v1/shipments";
+
+    //todo: unit test
+    public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
+        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
+        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
+            //todo: Add Bag split logic on configuration combo of productName & product.getQuantity
+            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
+                    product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
+        }
+
+        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1", HOME_STREET, null, HOME_CITY, HOME_STATE, HOME_ZIP, null, null);
+        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME, HOME_PHONE_NUMBER);
+        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, tylerContact);
+
+        RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(), null, vibrantTropicalOrderRequest.getShippingAddress(), vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null, null);
+        RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(), vibrantTropicalOrderRequest.getShippingPhone());
+        RoadieLocation deliveryLocation = new RoadieLocation(deliveryAddress, deliveryContact);
+
+        String pickupAfter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+                .format(DateUtility.addMinutesToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(), 1));
+        String end = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+                .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(), 2));
+        RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter, end);
+
+        return new EstimateRequest(roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
+    }
+
+
+    //todo: unit test
+    public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
+        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
+        StringBuilder description = new StringBuilder();
+        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
+            //todo: Add Bag split logic on Roadie Quantity
+            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
+                    product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
+            description.append(product.getProductName()).append(" ");
+        }
+        description.append("live fish.");
+        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1", HOME_STREET, null, HOME_CITY, HOME_STATE, HOME_ZIP, null, null);
+        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME, HOME_PHONE_NUMBER);
+        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, tylerContact);
+
+        RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(), null, vibrantTropicalOrderRequest.getShippingAddress(), vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null, null);
+        RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(), vibrantTropicalOrderRequest.getShippingPhone());
+        RoadieLocation deliveryLocation = new RoadieLocation(deliveryAddress, deliveryContact);
+
+        String pickupAfter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+                .format(DateUtility.addMinutesToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(), 1));
+        String end = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+                .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(), 2));
+        RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter, end);
+        //todo pass in deliveryOptions
+        RoadieDeliveryOptions roadieDeliveryOptions = new RoadieDeliveryOptions(false, false, false, 0);
+        return new ShipmentRequest(vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getCorrelationId(), null, null, description.toString(), roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, roadieDeliveryOptions, vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
+    }
 
     @Retryable(value = RuntimeException.class)
-    public EstimateResponse makeEstimateRequest(EstimateRequest estimateRequest){
+    public EstimateResponse makeEstimateRequest(EstimateRequest estimateRequest) {
 
         Mono<EstimateResponse> estimateResponseMono = WebClient.create()
                 .post()
-                .uri( URI.create(ROADIE_SANDBOX_URL+ESTIMATE_PATH))
-                .body(BodyInserters.fromValue( estimateRequest ) )
-                .accept( MediaType.APPLICATION_JSON )
+                .uri(URI.create(ROADIE_SANDBOX_URL + ESTIMATE_PATH))
+                .body(BodyInserters.fromValue(estimateRequest))
+                .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TYPE + ROADIE_SANDBOX_API_KEY)
                 .exchange()
                 .timeout(Duration.ofSeconds(5))
-                .flatMap( clientResponse -> {
+                .flatMap(clientResponse -> {
                     //Error handling
-                    if ( clientResponse.statusCode()== HttpStatus.BAD_REQUEST) {
+                    if (clientResponse.statusCode() == HttpStatus.BAD_REQUEST) {
 
-                      return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
+                        return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
                                 roadieErrorResponse1 -> Mono.error(new RuntimeException(roadieErrorResponse1.toString()))
                         );
                     }
-                    return clientResponse.bodyToMono( EstimateResponse.class );
-                } );
-        return  estimateResponseMono.block();
-    }
-
-    public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest){
-        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
-        for(Product product:vibrantTropicalOrderRequest.getProducts()){
-            //todo: Add Bag split logic on Roadie Quantity
-            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
-                    product.getProductName(), product.getDollars()* product.getQuantity(), 4, 2, 8,1, 1));
-        }
-
-        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home","1",HOME_STREET,null,HOME_CITY,HOME_STATE,HOME_ZIP, null,null);
-        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME,HOME_PHONE_NUMBER);
-        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress,tylerContact);
-
-        RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(),null,vibrantTropicalOrderRequest.getShippingAddress(),vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null,null);
-        RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(),vibrantTropicalOrderRequest.getShippingPhone());
-        RoadieLocation deliveryLocation = new RoadieLocation(deliveryAddress,deliveryContact);
-
-        String pickupAfter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
-                .format(DateUtility.addMinutesToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(),1));
-        String end = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
-                .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(),2));
-        RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter,end);
-
-        return new EstimateRequest(roadieItemArrayList,pickupLocation,deliveryLocation,pickupAfter, roadieTimeWindow, vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
-    }
-
-
-    public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
-        String description = "";
-        for(Product product:vibrantTropicalOrderRequest.getProducts()){
-            //todo: Add Bag split logic on Roadie Quantity
-            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
-                    product.getProductName(), product.getDollars()* product.getQuantity(), 4, 2, 8,1, 1));
-            description += product.getProductName() + " ";
-        }
-        description += "live fish.";
-        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home","1",HOME_STREET,null,HOME_CITY,HOME_STATE,HOME_ZIP, null,null);
-        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME,HOME_PHONE_NUMBER);
-        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress,tylerContact);
-
-        RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(),null,vibrantTropicalOrderRequest.getShippingAddress(),vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null,null);
-        RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(),vibrantTropicalOrderRequest.getShippingPhone());
-        RoadieLocation deliveryLocation = new RoadieLocation(deliveryAddress,deliveryContact);
-
-        String pickupAfter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
-                .format(DateUtility.addMinutesToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(),1));
-        String end = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
-                .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(),2));
-        RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter,end);
-        //todo pass in deliveryOptions
-        RoadieDeliveryOptions roadieDeliveryOptions = new RoadieDeliveryOptions(false,false,false,0);
-        return new ShipmentRequest(vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getCorrelationId(),null,null, description, roadieItemArrayList,pickupLocation,deliveryLocation,pickupAfter,roadieTimeWindow, roadieDeliveryOptions);
+                    return clientResponse.bodyToMono(EstimateResponse.class);
+                });
+        return estimateResponseMono.block();
     }
 
     @Retryable(value = RuntimeException.class)
     public CompletableFuture<ShipmentResponse> makeShipmentRequest(ShipmentRequest shipmentRequest) {
-        return CompletableFuture.supplyAsync(()->{
+        return CompletableFuture.supplyAsync(() -> {
             Mono<ShipmentResponse> shipmentResponseMono = WebClient.create()
                     .post()
-                    .uri( URI.create(ROADIE_SANDBOX_URL+ESTIMATE_PATH))
-                    .body(BodyInserters.fromValue( shipmentRequest ) )
-                    .accept( MediaType.APPLICATION_JSON )
+                    .uri(URI.create(ROADIE_SANDBOX_URL + SHIPMENT_PATH))
+                    .body(BodyInserters.fromValue(shipmentRequest))
+                    .accept(MediaType.APPLICATION_JSON)
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TYPE + ROADIE_SANDBOX_API_KEY)
                     .exchange()
                     .timeout(Duration.ofSeconds(5))
-                    .flatMap( clientResponse -> {
+                    .flatMap(clientResponse -> {
                         //Error handling
-                        if ( clientResponse.statusCode()== HttpStatus.BAD_REQUEST) {
+                        if (clientResponse.statusCode() == HttpStatus.BAD_REQUEST) {
 
                             return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
                                     roadieErrorResponse1 -> Mono.error(new RuntimeException(roadieErrorResponse1.toString()))
                             );
                         }
-                        return clientResponse.bodyToMono( ShipmentResponse.class );
-                    } );
-            return  shipmentResponseMono.block();
+                        return clientResponse.bodyToMono(ShipmentResponse.class);
+                    });
+            return shipmentResponseMono.block();
         });
     }
 }
