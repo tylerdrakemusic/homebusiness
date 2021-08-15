@@ -68,8 +68,8 @@ public class TestUtilities {
 
     private static ArrayList<Product> buildProductsSample() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(3, "Bronco Guppy", 1));
-        products.add(new Product(3, "Red Wag Platy", 1));
+        products.add(new Product(3, "Bronco Guppy", 3));
+        products.add(new Product(3, "Red Wag Platy", 2));
         return products;
     }
 }

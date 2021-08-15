@@ -30,6 +30,7 @@ public class VibrantTropicalService {
     }
 
     public ResponseEntity<String> serviceVibrantTropicalRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult) {
+        //todo: SetupLogging
         databaseService.saveVibrantTropicalOrderRequest(vibrantTropicalOrderRequest);
         if (bindingResult.hasErrors()) {
             List<String> messages = new ArrayList<>();
@@ -38,7 +39,7 @@ public class VibrantTropicalService {
             }
             return new ResponseEntity<>(messages.toString(), HttpStatus.BAD_REQUEST);
         }
-        // Enhanced input validation
+
         //todo: credit card validation
 
         massageRequest(vibrantTropicalOrderRequest);
@@ -51,13 +52,11 @@ public class VibrantTropicalService {
         estimateResponse.setVibrantTropicalRequestId(vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
         databaseService.saveEstimateResponse(estimateResponse);
 
-
         //todo: outOfDeliveryRange logic
         if(Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()){
             throw new OrderOutOfRangeException("Order cost efficiency invalid.  Try a pick up location close to Lincoln & Chambers in Parker, Colorado or by ordering more product.");
         }
 
-        // todo: async Roadie call, store outbound inbound
         ShipmentRequest shipmentRequest = roadieRequestService.buildShipmentRequest(vibrantTropicalOrderRequest);
         databaseService.saveShipmentRequest(shipmentRequest);
         CompletableFuture <ShipmentResponse> shipmentResponse = roadieRequestService.makeShipmentRequest(shipmentRequest);

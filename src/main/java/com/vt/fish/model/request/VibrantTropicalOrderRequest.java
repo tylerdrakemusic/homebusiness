@@ -55,7 +55,6 @@ public class VibrantTropicalOrderRequest {
     private String shippingName;
     private String shippingPhone;
 
-    //todo unit test:
     public VibrantTropicalOrderRequest() {
         vibrantTropicalRequestId = UUID.randomUUID().toString();
     }
@@ -108,7 +107,6 @@ public class VibrantTropicalOrderRequest {
         return correlationId;
     }
 
-    //todo: unit test
     public void setCorrelationId(String correlationId) {
         if (correlationId == null) {
             UUID uuid = UUID.randomUUID();
@@ -213,7 +211,6 @@ public class VibrantTropicalOrderRequest {
         return vibrantTropicalRequestId;
     }
 
-    //todo: unit test
     public double getTotalOrderPrice() {
         double price = 0;
         for (Product product : this.getProducts()) {

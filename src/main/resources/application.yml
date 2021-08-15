@@ -2,3 +2,18 @@ spring:
   application.name: FishApplication
   data.mongodb.uri: mongodb+srv://vt-service:oarQOT2nBq6xLK7U@developmentcluster.kchsj.mongodb.net/vt-dev?authSource=admin&replicaSet=atlas-47erwk-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true
   data.mongodb.database: vt-dev
+
+roadie:
+  product-description: Live Tropical Fish
+  pickup-street: 10292 Tall Oaks Circle
+  pickup-street2:
+  pickup-city: Parker
+  pickup-state: CO
+  pickup-zip: 80134
+  pickup-name: Vibrant Tropical
+  pickup-phone-number: 3038150107
+  authorization-type: Bearer
+  url: https://connect-sandbox.roadie.com
+  key: 6b09744affd183c29e8d699ec5917085b41142ca
+  estimate-path: /v1/estimates
+  shipment-path: /v1/shipments

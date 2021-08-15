@@ -1,5 +1,6 @@
 package com.vt.fish.service;
 
+import com.vt.fish.config.RoadieRequestServiceConfig;
 import com.vt.fish.model.request.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.*;
@@ -25,35 +26,26 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class RoadieRequestService {
 
+    private final RoadieRequestServiceConfig roadieRequestServiceConfig;
 
-    //todo: move to configuration
-    private static final String LIVE_TROPICAL_FISH = "Live Tropical Fish";
-    private static final String HOME_STREET = "10292 Tall Oaks Circle";
-    private static final String HOME_CITY = "Parker";
-    private static final String HOME_STATE = "CO";
-    private static final String HOME_ZIP = "80134";
-    private static final String HOME_CONTACT_NAME = "Tyler James Drake";
-    private static final String HOME_PHONE_NUMBER = "3038150107";
+    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig) {
+        this.roadieRequestServiceConfig = roadieRequestServiceConfig;
+    }
 
-    private static final String AUTHORIZATION_TYPE = "Bearer ";
-    private static final String ROADIE_SANDBOX_URL = "https://connect-sandbox.roadie.com";
-    private static final String ROADIE_SANDBOX_API_KEY = "6b09744affd183c29e8d699ec5917085b41142ca";
-
-    private static final String ESTIMATE_PATH = "/v1/estimates";
-    private static final String SHIPMENT_PATH = "/v1/shipments";
-
-    //todo: unit test
     public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
         for (Product product : vibrantTropicalOrderRequest.getProducts()) {
             //todo: Add Bag split logic on configuration combo of productName & product.getQuantity
-            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
+            roadieItemArrayList.add(new RoadieItem((roadieRequestServiceConfig.getProductDescription()),
                     product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
         }
 
-        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1", HOME_STREET, null, HOME_CITY, HOME_STATE, HOME_ZIP, null, null);
-        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME, HOME_PHONE_NUMBER);
-        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, tylerContact);
+        RoadieAddress pickupAddress = new RoadieAddress(roadieRequestServiceConfig.getPickupName(), "1",
+                roadieRequestServiceConfig.getPickupStreet(), roadieRequestServiceConfig.getPickupStreet2(),
+                roadieRequestServiceConfig.getPickupCity(), roadieRequestServiceConfig.getPickupState(),
+                roadieRequestServiceConfig.getPickupZip(), null, null);
+        RoadieContact pickupContact = new RoadieContact(roadieRequestServiceConfig.getPickupName(), roadieRequestServiceConfig.getPickupPhoneNumber());
+        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, pickupContact);
 
         RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(), null, vibrantTropicalOrderRequest.getShippingAddress(), vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null, null);
         RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(), vibrantTropicalOrderRequest.getShippingPhone());
@@ -68,21 +60,22 @@ public class RoadieRequestService {
         return new EstimateRequest(roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
     }
 
-
-    //todo: unit test
     public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
         StringBuilder description = new StringBuilder();
         for (Product product : vibrantTropicalOrderRequest.getProducts()) {
             //todo: Add Bag split logic on Roadie Quantity
-            roadieItemArrayList.add(new RoadieItem((LIVE_TROPICAL_FISH),
+            roadieItemArrayList.add(new RoadieItem((roadieRequestServiceConfig.getProductDescription()),
                     product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
             description.append(product.getProductName()).append(" ");
         }
         description.append("live fish.");
-        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1", HOME_STREET, null, HOME_CITY, HOME_STATE, HOME_ZIP, null, null);
-        RoadieContact tylerContact = new RoadieContact(HOME_CONTACT_NAME, HOME_PHONE_NUMBER);
-        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, tylerContact);
+        RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1",
+                roadieRequestServiceConfig.getPickupStreet(), roadieRequestServiceConfig.getPickupStreet2(),
+                roadieRequestServiceConfig.getPickupCity(), roadieRequestServiceConfig.getPickupState(),
+                roadieRequestServiceConfig.getPickupZip(), null, null);
+        RoadieContact pickupContact = new RoadieContact(roadieRequestServiceConfig.getPickupName(), roadieRequestServiceConfig.getPickupPhoneNumber());
+        RoadieLocation pickupLocation = new RoadieLocation(pickupAddress, pickupContact);
 
         RoadieAddress deliveryAddress = new RoadieAddress(vibrantTropicalOrderRequest.getShippingName(), null, vibrantTropicalOrderRequest.getShippingAddress(), vibrantTropicalOrderRequest.getShippingAddress2(), vibrantTropicalOrderRequest.getShippingCity(), vibrantTropicalOrderRequest.getShippingState(), vibrantTropicalOrderRequest.getShippingZip(), null, null);
         RoadieContact deliveryContact = new RoadieContact(vibrantTropicalOrderRequest.getShippingName(), vibrantTropicalOrderRequest.getShippingPhone());
@@ -94,20 +87,21 @@ public class RoadieRequestService {
                 .format(DateUtility.addHoursToJavaUtilDate(vibrantTropicalOrderRequest.getTimeStamp(), 2));
         RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter, end);
         //todo pass in deliveryOptions
-        RoadieDeliveryOptions roadieDeliveryOptions = new RoadieDeliveryOptions(false, false, false, 0);
+        RoadieDeliveryOptions roadieDeliveryOptions = new RoadieDeliveryOptions(true, false, false, 0);
         return new ShipmentRequest(vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getCorrelationId(), null, null, description.toString(), roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, roadieDeliveryOptions, vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
     }
 
+    //todo: test
     @Retryable(value = RuntimeException.class)
     public EstimateResponse makeEstimateRequest(EstimateRequest estimateRequest) {
 
         Mono<EstimateResponse> estimateResponseMono = WebClient.create()
                 .post()
-                .uri(URI.create(ROADIE_SANDBOX_URL + ESTIMATE_PATH))
+                .uri(URI.create(roadieRequestServiceConfig.getUrl() + roadieRequestServiceConfig.getEstimatePath()))
                 .body(BodyInserters.fromValue(estimateRequest))
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TYPE + ROADIE_SANDBOX_API_KEY)
+                .header(HttpHeaders.AUTHORIZATION, roadieRequestServiceConfig.getAuthorizationType()+ " " + roadieRequestServiceConfig.getKey())
                 .exchange()
                 .timeout(Duration.ofSeconds(5))
                 .flatMap(clientResponse -> {
@@ -123,16 +117,17 @@ public class RoadieRequestService {
         return estimateResponseMono.block();
     }
 
+    //todo: test
     @Retryable(value = RuntimeException.class)
     public CompletableFuture<ShipmentResponse> makeShipmentRequest(ShipmentRequest shipmentRequest) {
         return CompletableFuture.supplyAsync(() -> {
             Mono<ShipmentResponse> shipmentResponseMono = WebClient.create()
                     .post()
-                    .uri(URI.create(ROADIE_SANDBOX_URL + SHIPMENT_PATH))
+                    .uri(URI.create(roadieRequestServiceConfig.getUrl() + roadieRequestServiceConfig.getShipmentPath()))
                     .body(BodyInserters.fromValue(shipmentRequest))
                     .accept(MediaType.APPLICATION_JSON)
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                    .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TYPE + ROADIE_SANDBOX_API_KEY)
+                    .header(HttpHeaders.AUTHORIZATION, roadieRequestServiceConfig.getAuthorizationType() + " " + roadieRequestServiceConfig.getKey())
                     .exchange()
                     .timeout(Duration.ofSeconds(5))
                     .flatMap(clientResponse -> {
