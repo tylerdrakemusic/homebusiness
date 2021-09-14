@@ -1,5 +1,6 @@
 package com.vt.fish.service;
 
+import com.vt.fish.config.PlasticBaggingConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
 import com.vt.fish.model.request.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
@@ -21,26 +22,49 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @Component
 public class RoadieRequestService {
 
     private final RoadieRequestServiceConfig roadieRequestServiceConfig;
+    private final PlasticBaggingConfig plasticBaggingConfig;
+    private static final String NAME = "name";
+    private static final String PERBAG = "perbag";
+    private static final String LENGTH = "length";
+    private static final String WIDTH = "width";
+    private static final String HEIGHT = "height";
+    private static final String WEIGHT = "weight";
 
-    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig) {
+    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig, PlasticBaggingConfig plasticBaggingConfig) {
         this.roadieRequestServiceConfig = roadieRequestServiceConfig;
+        this.plasticBaggingConfig = plasticBaggingConfig;
+    }
+
+    private ArrayList<RoadieItem> buildBaggingItems(ArrayList<Product> products) {
+        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
+        for (Product product : products) {
+            for (Map<String, Object> map : plasticBaggingConfig.getProps()) {
+                if (product.getProductName().equalsIgnoreCase((String) map.get(NAME))) {
+                    int perbag = (Integer) map.get(PERBAG);
+                    for (int i = 0; i < product.getQuantity(); i += perbag) {
+                        int quantity = product.getQuantity() - i < perbag ? product.getQuantity() % perbag : perbag;
+                        roadieItemArrayList.add(new RoadieItem(roadieRequestServiceConfig.getProductDescription(), product.getProductName(),
+                                product.getDollars() * quantity, quantity, (Integer) map.get(LENGTH),
+                                (Integer) map.get(WIDTH), (Integer) map.get(HEIGHT), (Integer) map.get(WEIGHT)));
+                    }
+                }
+            }
+        }
+        return roadieItemArrayList;
     }
 
     public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
-        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
-            //todo: Add Bag split logic on configuration combo of productName & product.getQuantity
-            roadieItemArrayList.add(new RoadieItem((roadieRequestServiceConfig.getProductDescription()),
-                    product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
-        }
+        ArrayList<RoadieItem> roadieItemArrayList = buildBaggingItems(vibrantTropicalOrderRequest.getProducts());
 
-        RoadieAddress pickupAddress = new RoadieAddress(roadieRequestServiceConfig.getPickupName(), "1",
+
+        RoadieAddress pickupAddress = new RoadieAddress(roadieRequestServiceConfig.getPickupName(), "0",
                 roadieRequestServiceConfig.getPickupStreet(), roadieRequestServiceConfig.getPickupStreet2(),
                 roadieRequestServiceConfig.getPickupCity(), roadieRequestServiceConfig.getPickupState(),
                 roadieRequestServiceConfig.getPickupZip(), null, null);
@@ -61,12 +85,9 @@ public class RoadieRequestService {
     }
 
     public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
+        ArrayList<RoadieItem> roadieItemArrayList = buildBaggingItems(vibrantTropicalOrderRequest.getProducts());
         StringBuilder description = new StringBuilder();
         for (Product product : vibrantTropicalOrderRequest.getProducts()) {
-            //todo: Add Bag split logic on Roadie Quantity
-            roadieItemArrayList.add(new RoadieItem((roadieRequestServiceConfig.getProductDescription()),
-                    product.getProductName(), product.getDollars() * product.getQuantity(), 4, 2, 8, 1, 1));
             description.append(product.getProductName()).append(" ");
         }
         description.append("live fish.");
@@ -101,7 +122,7 @@ public class RoadieRequestService {
                 .body(BodyInserters.fromValue(estimateRequest))
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .header(HttpHeaders.AUTHORIZATION, roadieRequestServiceConfig.getAuthorizationType()+ " " + roadieRequestServiceConfig.getKey())
+                .header(HttpHeaders.AUTHORIZATION, roadieRequestServiceConfig.getAuthorizationType() + " " + roadieRequestServiceConfig.getKey())
                 .exchange()
                 .timeout(Duration.ofSeconds(5))
                 .flatMap(clientResponse -> {
