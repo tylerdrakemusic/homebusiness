@@ -16,7 +16,6 @@ import org.springframework.validation.FieldError;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -86,10 +85,10 @@ public class VibrantTropicalService {
         }
         for(Product product: vibrantTropicalOrderRequest.getProducts())
         {
-            if(product.getSubproduct().toLowerCase().contains("pair")){
+            if(product.getSubProduct().toLowerCase().contains("pair")){
                 product.setQuantity(product.getQuantity()*2);
             }
-            else if(product.getSubproduct().toLowerCase().contains("trio")){
+            else if(product.getSubProduct().toLowerCase().contains("trio")){
                 product.setQuantity(product.getQuantity()*3);
             }
         }

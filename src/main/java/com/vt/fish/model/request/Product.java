@@ -4,16 +4,16 @@ public class Product {
     private double dollars;
     private String productName;
     private int quantity;
-    private String subproduct;
+    private String subProduct;
 
     public Product() {
     }
 
-    public Product(double dollars, String productName, int quantity, String subproduct) {
+    public Product(double dollars, String productName, int quantity, String subProduct) {
         this.dollars = dollars;
         this.productName = productName;
         this.quantity = quantity;
-        this.subproduct = subproduct;
+        this.subProduct = subProduct;
     }
 
     public double getDollars() {
@@ -28,7 +28,7 @@ public class Product {
         return quantity;
     }
 
-    public String getSubproduct() { return subproduct; }
+    public String getSubProduct() { return subProduct; }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
