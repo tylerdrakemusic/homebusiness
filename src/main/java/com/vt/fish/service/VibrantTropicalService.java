@@ -31,7 +31,7 @@ public class VibrantTropicalService {
     }
 
     public ResponseEntity<String> serviceVibrantTropicalRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult) {
-        //todo: SetupLogging
+        //todo: SetupLogging Factory
         databaseService.saveVibrantTropicalOrderRequest(vibrantTropicalOrderRequest);
         if (bindingResult.hasErrors()) {
             List<String> messages = new ArrayList<>();
