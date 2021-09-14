@@ -26,7 +26,7 @@ public class VibrantTropicalOrderRequestTest {
     @Test
     public void vibrantTropicalOrderRequest_shouldReturnCorrectTotalOrderPrice(){
         VibrantTropicalOrderRequest vibrantTropicalOrderRequest = TestUtilities.buildVibrantTropicalOrderRequestSample();
-        assertEquals(15,vibrantTropicalOrderRequest.getTotalOrderPrice(),0);
+        assertEquals(48,vibrantTropicalOrderRequest.getTotalOrderPrice(),0);
 
     }
 }

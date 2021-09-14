@@ -1,6 +1,7 @@
 package com.vt.fish.service;
 
 import com.vt.fish.controller.special.OrderOutOfRangeException;
+import com.vt.fish.model.request.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
 import com.vt.fish.model.roadierequest.ShipmentRequest;
@@ -15,6 +16,7 @@ import org.springframework.validation.FieldError;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -53,13 +55,15 @@ public class VibrantTropicalService {
         databaseService.saveEstimateResponse(estimateResponse);
 
         //todo: outOfDeliveryRange logic
-        if(Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()){
-            throw new OrderOutOfRangeException("Order cost efficiency invalid.  Try a pick up location close to Lincoln & Chambers in Parker, Colorado or by ordering more product.");
+        if (estimateResponse.getPrice() != null) {
+            if (Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()) {
+                throw new OrderOutOfRangeException("Order cost efficiency invalid.  Try a pick up location close to Lincoln & Chambers in Parker, Colorado or by ordering more product.");
+            }
         }
 
         ShipmentRequest shipmentRequest = roadieRequestService.buildShipmentRequest(vibrantTropicalOrderRequest);
         databaseService.saveShipmentRequest(shipmentRequest);
-        CompletableFuture <ShipmentResponse> shipmentResponse = roadieRequestService.makeShipmentRequest(shipmentRequest);
+        CompletableFuture<ShipmentResponse> shipmentResponse = roadieRequestService.makeShipmentRequest(shipmentRequest);
         // todo: async Stripe Payment call, store outbound inbound
         // todo: async Tax call, store outbound inbound
 
@@ -79,6 +83,15 @@ public class VibrantTropicalService {
     private void massageRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         if (vibrantTropicalOrderRequest.getProducts() == null) {
             vibrantTropicalOrderRequest.setProducts(new ArrayList<>());
+        }
+        for(Product product: vibrantTropicalOrderRequest.getProducts())
+        {
+            if(product.getSubproduct().toLowerCase().contains("pair")){
+                product.setQuantity(product.getQuantity()*2);
+            }
+            else if(product.getSubproduct().toLowerCase().contains("trio")){
+                product.setQuantity(product.getQuantity()*3);
+            }
         }
         cloneShipping(vibrantTropicalOrderRequest);
     }
