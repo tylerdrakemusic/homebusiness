@@ -1,0 +1,33 @@
+### Test request
+
+POST http://localhost:8080/order
+Content-Type: application/json
+CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
+
+{
+    "billingAddress" : "6674 S Prescott Way",
+    "billingCity": "Littleton",
+    "billingState": "CO",
+    "billingZip": "80120",
+    "billingName": "Tom Drake",
+    "billingPhone": "7202445719",
+    "cardName" : "Tyler James Drake",
+    "cardNumber" : "4242424242424242",
+    "cvv" : "123",
+    "expMonth": "12",
+    "expYear": "2023",
+    "products": [
+        {
+            "dollars": 10,
+            "productName" : "Acei",
+            "subproduct":"ACEI",
+            "quantity" : 13
+        },
+                {
+            "dollars": 10,
+            "productName" : "Guppy",
+            "subproduct":"Guppy trio",
+            "quantity" : 500
+        }
+    ]
+}

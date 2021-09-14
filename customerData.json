@@ -37,13 +37,22 @@
             "firstName": "Jenna",
             "lastName": "Miller",
             "phone": "7123301351"
-        }
+        },
         {
             "firstName": "Nate",
             "phone": "2096624889",
             "shippingAddress" : "7413 S Mobile",
             "shippingCity": "Aurora",
             "shippingState" : "Colorado"
+        },
+        {
+            "firstName": "Lily",
+            "lastName": "Huang",
+            "phone": "7202884983"
+        },
+        {
+            "firstName": "Linda",
+            "lastName": "Olsen"
         }
     ]
 }
