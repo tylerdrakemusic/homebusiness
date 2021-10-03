@@ -1,6 +1,7 @@
 package com.vt.fish.service;
 
 import com.vt.fish.controller.special.OrderOutOfRangeException;
+import com.vt.fish.logging.annotation.VibrantLog;
 import com.vt.fish.model.request.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
@@ -30,8 +31,8 @@ public class VibrantTropicalService {
         this.roadieRequestService = roadieRequestService;
     }
 
+    @VibrantLog(before = "Servicing Vibrant Tropical request", after = "Done servicing", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public ResponseEntity<String> serviceVibrantTropicalRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult) {
-        //todo: SetupLogging Factory
         databaseService.saveVibrantTropicalOrderRequest(vibrantTropicalOrderRequest);
         if (bindingResult.hasErrors()) {
             List<String> messages = new ArrayList<>();
@@ -53,7 +54,7 @@ public class VibrantTropicalService {
         estimateResponse.setVibrantTropicalRequestId(vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
         databaseService.saveEstimateResponse(estimateResponse);
 
-        //todo: outOfDeliveryRange logic
+        //todo: outOfDeliveryFishLifeRange logic
         if (estimateResponse.getPrice() != null) {
             if (Double.parseDouble(estimateResponse.getPrice()) > vibrantTropicalOrderRequest.getTotalOrderPrice()) {
                 throw new OrderOutOfRangeException("Order cost efficiency invalid.  Try a pick up location close to Lincoln & Chambers in Parker, Colorado or by ordering more product.");
@@ -79,17 +80,17 @@ public class VibrantTropicalService {
     }
 
 
+    //todo: test
+    @VibrantLog(before = "Massaging ", after = "Done massaging")
     private void massageRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         if (vibrantTropicalOrderRequest.getProducts() == null) {
             vibrantTropicalOrderRequest.setProducts(new ArrayList<>());
         }
-        for(Product product: vibrantTropicalOrderRequest.getProducts())
-        {
-            if(product.getSubProduct().toLowerCase().contains("pair")){
-                product.setQuantity(product.getQuantity()*2);
-            }
-            else if(product.getSubProduct().toLowerCase().contains("trio")){
-                product.setQuantity(product.getQuantity()*3);
+        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
+            if (product.getSubProduct().toLowerCase().contains("pair")) {
+                product.setQuantity(product.getQuantity() * 2);
+            } else if (product.getSubProduct().toLowerCase().contains("trio")) {
+                product.setQuantity(product.getQuantity() * 3);
             }
         }
         cloneShipping(vibrantTropicalOrderRequest);

@@ -3,6 +3,10 @@ package com.vt.fish.model.roadierequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RoadieItem {
+
+    public RoadieItem(){
+
+    }
     
     public RoadieItem(String description, String referenceId, double value, double length, double width, double height, double weight, int quantity) {
         this.description = description;
@@ -15,15 +19,15 @@ public class RoadieItem {
         this.quantity = quantity;
     }
     
-    private final String description;
+    private String description;
     @JsonProperty("reference_id")
-    private final String referenceId;
-    private final double value;
-    private final double length;
-    private final double width;
-    private final double height;
-    private final double weight;
-    private final int quantity;
+    private String referenceId;
+    private double value;
+    private double length;
+    private double width;
+    private double height;
+    private double weight;
+    private int quantity;
 
     public String getDescription() {
         return description;
