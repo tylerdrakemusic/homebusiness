@@ -6,8 +6,9 @@ function printOrderSummary() {
 
   for (let i = 0; i < sessionStorage.length; i++) {
     var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
-    if (element.subproduct != null) {
-      var node = document.createTextNode(element.productName + ' ' + element.subproduct + '...... quantity=' + element.quantity + '\n');
+    if (element.subProduct != null) {
+      //console.log(element);
+      var node = document.createTextNode(element.productName + ' ' + element.subProduct + '...... quantity=' + element.quantity + '\n');
       para.appendChild(node);
       para.appendChild(document.createElement('br'));
 
@@ -70,17 +71,19 @@ function handleSubmit(event) {
   for (let i = 0; i < sessionStorage.length; i++) {
     var element = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
     if (element.hasOwnProperty('productName')) {
-      delete element["subProduct"];
+
       products.products.push(element);
     }
   }
+
   requestBody.products = products.products;
+  //console.log(requestBody.products);
   userAction(requestBody);
 }
 
 const userAction = async (requestBody) => {
   //console.log( requestBody.valueOf() );
-  const response = await fetch('https://vibrant-tropical-fish-service.herokuapp.com/order', {
+  const response = await fetch('http://localhost:8080/order', {
     method: 'POST',
     body: JSON.stringify(requestBody),
     headers: {
