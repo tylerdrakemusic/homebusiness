@@ -1,5 +1,6 @@
 package com.vt.fish.controller;
 
+import com.vt.fish.logging.annotation.VibrantLog;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.service.VibrantTropicalService;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ public class VibrantTropicalController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
+    @VibrantLog(before = "Controlling Vibrant Tropical request order", after = "Done controlling order", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public ResponseEntity<String> order(
             @RequestHeader(value = "CorrelationId") String correlationId,
             @Valid @RequestBody VibrantTropicalOrderRequest vibrantTropicalOrderRequest, BindingResult bindingResult, WebRequest webRequest){

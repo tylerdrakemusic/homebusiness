@@ -2,6 +2,7 @@ package com.vt.fish.service;
 
 import com.vt.fish.config.PlasticBaggingConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
+import com.vt.fish.logging.annotation.VibrantLog;
 import com.vt.fish.model.request.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.*;
@@ -42,7 +43,7 @@ public class RoadieRequestService {
         this.plasticBaggingConfig = plasticBaggingConfig;
     }
 
-    private ArrayList<RoadieItem> buildBaggingItems(ArrayList<Product> products) {
+    private ArrayList<RoadieItem> mapBaggingItems(ArrayList<Product> products) {
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
         for (Product product : products) {
             for (Map<String, Object> map : plasticBaggingConfig.getProps()) {
@@ -60,8 +61,9 @@ public class RoadieRequestService {
         return roadieItemArrayList;
     }
 
+    @VibrantLog(before = "Building estimate request", after = "Done building estimate request", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = buildBaggingItems(vibrantTropicalOrderRequest.getProducts());
+        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProducts());
 
 
         RoadieAddress pickupAddress = new RoadieAddress(roadieRequestServiceConfig.getPickupName(), "0",
@@ -84,8 +86,10 @@ public class RoadieRequestService {
         return new EstimateRequest(roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
     }
 
+
+    @VibrantLog(before = "Building shipment request", after = "Done building shipment request", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = buildBaggingItems(vibrantTropicalOrderRequest.getProducts());
+        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProducts());
         StringBuilder description = new StringBuilder();
         for (Product product : vibrantTropicalOrderRequest.getProducts()) {
             description.append(product.getProductName()).append(" ");
@@ -109,10 +113,11 @@ public class RoadieRequestService {
         RoadieTimeWindow roadieTimeWindow = new RoadieTimeWindow(pickupAfter, end);
         //todo pass in deliveryOptions
         RoadieDeliveryOptions roadieDeliveryOptions = new RoadieDeliveryOptions(true, false, false, 0);
-        return new ShipmentRequest(vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getCorrelationId(), null, null, description.toString(), roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, roadieDeliveryOptions, vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
+        return new ShipmentRequest(vibrantTropicalOrderRequest.getCorrelationId(), vibrantTropicalOrderRequest.getVibrantTropicalRequestId(), null, null, description.toString(), roadieItemArrayList, pickupLocation, deliveryLocation, pickupAfter, roadieTimeWindow, roadieDeliveryOptions, vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
     }
 
     //todo: test
+    @VibrantLog(before = "Making estimate request", after = "Done making estimate request", vibrantTropicalRequestId = "#{estimateRequest.vibrantTropicalRequestId}")
     @Retryable(value = RuntimeException.class)
     public EstimateResponse makeEstimateRequest(EstimateRequest estimateRequest) {
 
@@ -127,7 +132,7 @@ public class RoadieRequestService {
                 .timeout(Duration.ofSeconds(5))
                 .flatMap(clientResponse -> {
                     //Error handling
-                    if (clientResponse.statusCode() == HttpStatus.BAD_REQUEST) {
+                    if (clientResponse.statusCode().is4xxClientError() || clientResponse.statusCode().is5xxServerError()) {
 
                         return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
                                 roadieErrorResponse1 -> Mono.error(new RuntimeException(roadieErrorResponse1.toString()))
@@ -139,6 +144,7 @@ public class RoadieRequestService {
     }
 
     //todo: test
+    @VibrantLog(before = "Making shipment request", after = "Done making shipment request", vibrantTropicalRequestId = "#{shipmentRequest.vibrantTropicalRequestId}")
     @Retryable(value = RuntimeException.class)
     public CompletableFuture<ShipmentResponse> makeShipmentRequest(ShipmentRequest shipmentRequest) {
         return CompletableFuture.supplyAsync(() -> {
@@ -153,7 +159,7 @@ public class RoadieRequestService {
                     .timeout(Duration.ofSeconds(5))
                     .flatMap(clientResponse -> {
                         //Error handling
-                        if (clientResponse.statusCode() == HttpStatus.BAD_REQUEST) {
+                        if (clientResponse.statusCode().is4xxClientError() || clientResponse.statusCode().is5xxServerError()) {
 
                             return clientResponse.bodyToMono(RoadieErrorResponse.class).flatMap(
                                     roadieErrorResponse1 -> Mono.error(new RuntimeException(roadieErrorResponse1.toString()))

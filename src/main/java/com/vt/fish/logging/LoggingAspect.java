@@ -65,13 +65,13 @@ public class LoggingAspect {
     @AfterReturning(pointcut = "execution(* *(..)) && @annotation(vibrantLog)", returning = "result")
     public void afterReturningLogAspectAnnotation(JoinPoint joinPoint, VibrantLog vibrantLog, Object result) {
         StandardEvaluationContext evaluationContext = getEvaluationContext(joinPoint);
-        String vibrantTropicalRequestId = "";
+        String vibrantTropicalRequestId = "null";
         if (!StringUtils.isEmpty(vibrantLog.after())) {
             if (!StringUtils.isEmpty(vibrantLog.vibrantTropicalRequestId())) {
                 vibrantTropicalRequestId = vibrantLog.vibrantTropicalRequestId();
             }
             vibrantLogger.info(evaluateExpression(evaluationContext, vibrantLog.after()
-                    + " VibrantTropicalRequestId: " + vibrantTropicalRequestId
+                    + ". VibrantTropicalRequestId: " + vibrantTropicalRequestId
                     + " CorrelationId:" + getCorrelationId(httpServletRequestOptional.get()), String.class)
             );
         }
@@ -80,9 +80,7 @@ public class LoggingAspect {
 
     private StandardEvaluationContext getEvaluationContext(JoinPoint joinPoint) {
         Map<String, Object> arguments = getArguments(joinPoint);
-        if (httpServletRequestOptional.isPresent()) {
-            arguments.put("$httpServletRequest", httpServletRequestOptional.get());
-        }
+        httpServletRequestOptional.ifPresent(request -> arguments.put("$httpServletRequest", request));
         arguments.put("$logContext", LogContextHolder.getLogContext());
         StandardEvaluationContext evaluationContext = new StandardEvaluationContext(arguments);
         evaluationContext.addPropertyAccessor(new MapAccessor());
