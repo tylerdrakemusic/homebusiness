@@ -1,5 +1,6 @@
 package com.vt.fish.service;
 
+import com.vt.fish.logging.VibrantLogger;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.response.SubordinateResponse;
 import com.vt.fish.model.roadierequest.*;
@@ -31,12 +32,14 @@ public class DatabaseServiceTest {
     private ShipmentResponseRepository shipmentResponseRepository;
     @Mock
     private SubordinateResponseRepository subordinateResponseRepository;
+    @Mock
+    private VibrantLogger vibrantLogger;
 
     @Before
     public void setup() {
         MockitoAnnotations.openMocks(this);
         databaseService = new DatabaseService(vibrantTropicalOrderRequestRepository, estimateRequestRepository,
-                estimateResponseRepository, shipmentRequestRepository, shipmentResponseRepository, subordinateResponseRepository);
+                estimateResponseRepository, shipmentRequestRepository, shipmentResponseRepository, subordinateResponseRepository, vibrantLogger);
     }
 
     @Test
