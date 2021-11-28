@@ -1,6 +1,6 @@
 package com.vt.fish.service;
 
-import com.vt.fish.config.PlasticBaggingConfig;
+import com.vt.fish.config.ProductConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
@@ -26,19 +26,19 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {RoadieRequestServiceConfig.class,PlasticBaggingConfig.class})
+@SpringBootTest(classes = {RoadieRequestServiceConfig.class, ProductConfig.class})
 public class RoadieRequestServiceTest {
 
     @Mock
     private RoadieRequestServiceConfig roadieRequestServiceConfig;
     @Mock
-    private PlasticBaggingConfig plasticBaggingConfig;
+    private ProductConfig productConfig;
     private RoadieRequestService roadieRequestService;
 
     @Before
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        roadieRequestService = new RoadieRequestService(roadieRequestServiceConfig, plasticBaggingConfig);
+        roadieRequestService = new RoadieRequestService(roadieRequestServiceConfig, productConfig);
 
         ArrayList<Map<String,Object>> baggingProps = new ArrayList<>();
         LinkedHashMap<String,Object> broncoProps = new LinkedHashMap<>();
@@ -60,7 +60,7 @@ public class RoadieRequestServiceTest {
         baggingProps.add(broncoProps);
         baggingProps.add(wagTailProps);
 
-        when(plasticBaggingConfig.getProps()).thenReturn(baggingProps);
+        when(productConfig.getProps()).thenReturn(baggingProps);
     }
 
     @Test

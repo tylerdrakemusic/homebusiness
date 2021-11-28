@@ -18,7 +18,7 @@ roadie:
   estimate-path: /v1/estimates
   shipment-path: /v1/shipments
 
-bagging:
+product:
   props:
     -
       name: Yellow-tail Acei

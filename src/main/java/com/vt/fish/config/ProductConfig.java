@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "bagging")
-public class PlasticBaggingConfig {
+@ConfigurationProperties(prefix = "product")
+public class ProductConfig {
     private List<Map<String, Object>> props;
     public List<Map<String, Object>> getProps() {
         return props;

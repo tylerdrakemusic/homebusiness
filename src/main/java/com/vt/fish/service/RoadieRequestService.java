@@ -1,6 +1,6 @@
 package com.vt.fish.service;
 
-import com.vt.fish.config.PlasticBaggingConfig;
+import com.vt.fish.config.ProductConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
 import com.vt.fish.logging.annotation.VibrantLog;
 import com.vt.fish.model.request.Product;
@@ -11,7 +11,6 @@ import com.vt.fish.model.roadieresponse.RoadieErrorResponse;
 import com.vt.fish.model.roadieresponse.ShipmentResponse;
 import com.vt.fish.utility.DateUtility;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
@@ -30,7 +29,7 @@ import java.util.concurrent.CompletableFuture;
 public class RoadieRequestService {
 
     private final RoadieRequestServiceConfig roadieRequestServiceConfig;
-    private final PlasticBaggingConfig plasticBaggingConfig;
+    private final ProductConfig productConfig;
     private static final String NAME = "name";
     private static final String PERBAG = "perbag";
     private static final String LENGTH = "length";
@@ -38,15 +37,15 @@ public class RoadieRequestService {
     private static final String HEIGHT = "height";
     private static final String WEIGHT = "weight";
 
-    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig, PlasticBaggingConfig plasticBaggingConfig) {
+    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig, ProductConfig productConfig) {
         this.roadieRequestServiceConfig = roadieRequestServiceConfig;
-        this.plasticBaggingConfig = plasticBaggingConfig;
+        this.productConfig = productConfig;
     }
 
     private ArrayList<RoadieItem> mapBaggingItems(ArrayList<Product> products) {
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
         for (Product product : products) {
-            for (Map<String, Object> map : plasticBaggingConfig.getProps()) {
+            for (Map<String, Object> map : productConfig.getProps()) {
                 if (product.getProductName().equalsIgnoreCase((String) map.get(NAME))) {
                     int perbag = (Integer) map.get(PERBAG);
                     for (int i = 0; i < product.getQuantity(); i += perbag) {
