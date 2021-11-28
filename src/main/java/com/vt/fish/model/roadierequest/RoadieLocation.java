@@ -4,15 +4,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RoadieLocation {
 
+    public RoadieLocation(){
+
+    }
+
     public RoadieLocation(RoadieAddress roadieAddress, RoadieContact roadieContact) {
         this.roadieAddress = roadieAddress;
         this.roadieContact = roadieContact;
     }
 
     @JsonProperty("address")
-    private final RoadieAddress roadieAddress;
+    private RoadieAddress roadieAddress;
     @JsonProperty("contact")
-    private final RoadieContact roadieContact;
+    private RoadieContact roadieContact;
 
     public RoadieAddress getRoadieAddress() {
         return roadieAddress;

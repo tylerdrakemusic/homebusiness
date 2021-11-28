@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RoadieAddress {
 
+    public RoadieAddress(){
+    }
+
     public RoadieAddress(String name, String storeNumber, String street1, String street2, String city, String state, String zip, Double latitude, Double longitude) {
         this.name = name;
         this.storeNumber = storeNumber;
@@ -16,16 +19,16 @@ public class RoadieAddress {
         this.longitude = longitude;
     }
 
-    private final String name;
+    private String name;
     @JsonProperty("store_number")
-    private final String storeNumber;
-    private final String street1;
-    private final String street2;
-    private final String city;
-    private final String state;
-    private final String zip;
-    private final Double latitude;
-    private final Double longitude;
+    private String storeNumber;
+    private String street1;
+    private String street2;
+    private String city;
+    private String state;
+    private String zip;
+    private Double latitude;
+    private Double longitude;
 
     public String getName() {
         return name;

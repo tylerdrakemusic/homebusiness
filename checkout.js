@@ -83,7 +83,7 @@ function handleSubmit(event) {
 
 const userAction = async (requestBody) => {
   //console.log( requestBody.valueOf() );
-  const response = await fetch('http://localhost:8080/order', {
+  const response = await fetch('https://vt-fish-service-dev.herokuapp.com/order', {
     method: 'POST',
     body: JSON.stringify(requestBody),
     headers: {
