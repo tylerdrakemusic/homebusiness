@@ -43,16 +43,37 @@
             "phone": "2096624889",
             "shippingAddress" : "7413 S Mobile",
             "shippingCity": "Aurora",
-            "shippingState" : "Colorado"
+            "shippingState" : "Colorado",
+            "connection" : "Loves cichlids"
         },
         {
             "firstName": "Lily",
             "lastName": "Huang",
-            "phone": "7202884983"
+            "phone": "7202884983",
+            "connection" : "CAS smart fish presentation"
         },
         {
             "firstName": "Linda",
-            "lastName": "Olsen"
+            "lastName": "Olsen",
+            "email" : "linda_9555@msn.com",
+            "connection" : "CAS sweet old lady"
+        },
+        {
+            "firstName": "Kassi",
+            "lastName": "Robbins",
+            "phone": "3037105361",
+            "connection" : ""
+        },
+        {
+            "firstName" : "Gte",
+            "email" : "dwimeisafitri@gmail.com",
+            "connection" : "Indonesia Livebearer Vendor"
+        },
+        {
+            "firstName": "Sonija",
+            "lastName": "Rush",
+            "phone": "3039818782",
+            "connection" : "Neon Swordtails"
         }
     ]
 }
