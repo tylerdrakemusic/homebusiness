@@ -2,9 +2,9 @@ package com.vt.fish.logging;
 
 import com.vt.fish.logging.annotation.VibrantLog;
 import io.micrometer.core.instrument.util.StringUtils;
-import org.apache.juli.logging.Log;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.BeanFactory;
@@ -16,7 +16,6 @@ import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.lang.NonNull;
-import org.aspectj.lang.annotation.Aspect;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
