@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(188, 238, 245);
+}
+.jumbotron h1 {
+    font-family:'Domine', serif;
+    color: rgb(205, 242, 248);
+    
+}
+
+.jumbotron h2 {
+    font-family:'Licorice', cursive;
+    color: rgb(205, 242, 248);
+}
+
+h1{
+    font-family:'Domine', serif;
+}
+h2 {
+    font-family:'Licorice', cursive; 
+}
+
+h3, .card-header {
+    font-family: 'Inconsolata', monospace;
+}
+
+.jumbotron {
+    background-image: url("/img/version2imgs/pexels-blaque-x-932638.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    margin: 0;
+    padding: 30px;
+    color: whitesmoke;
+}
+
+.navbar {
+    background-color: rgb(45, 118, 131);
+}
+
+.nav-item {
+    color:rgb(179, 239, 247);
+    font-family: 'Inconsolata';
+    font-size: large;
+}
+
+a, a.hover {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-dark{
+    display: flex;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#fishCard {
+    align-items:center;
+    margin: auto;
+    width: 20rem;
+    box-shadow: 5px 5px 10px 0px;
+}
+
+footer {
+    background-color: rgb(45, 118, 131);
+    height: 50px;
+}
