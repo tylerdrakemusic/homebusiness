@@ -1,8 +1,8 @@
-### Test request ###
 
 POST http://localhost:8080/order
 Content-Type: application/json
 CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
+
 {
   "billingAddress": "6674 S Prescott Way",
   "billingCity": "Littleton",
@@ -18,13 +18,13 @@ CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
   "products": [
     {
       "dollars": 10,
-      "productName": "Acei",
+      "productName": "Yellow-tail Acei",
       "subProduct": "ACEI",
       "quantity": 13
     },
     {
       "dollars": 10,
-      "productName": "Guppy",
+      "productName": "Bronco Guppy",
       "subProduct": "Guppy trio",
       "quantity": 500
     }
