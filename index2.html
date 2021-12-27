@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style2.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine&family=Inconsolata:wght@300&family=Licorice&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                </div>
+                <div class="col">
+                    <h1>Vibrant Tropical</h1>
+                    <h2>Your local ciclid shop</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="/img/version2imgs/noun-cichlid-4284375.svg" width="50"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#vtNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id = "vtNavbar">
+                <ul class = "navbar-nav">
+                    <li class="nav-item active mr-3"><a class = "nav-link" href="index.html"> Home</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">About</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">Story</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">Media</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">Connect</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">FAQ</a></li>
+                    <li class = "nav-item mr-3"><a class = "nav-link" href="#">Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Your Local Spot for Cichlids!</h2>
+                <p>What began as a quarantine hobby in the basement of my home in Parker, Colorado turned quickly into a flourishing business that allows me to share my love of fish. Vibrant Tropical is a locally-owned small business that delivers healthy and beautiful cichlids to your doorstep with just the click of a button. </p>
+                <div  class="form-row justify-content-center">
+                    <a type="button" href="#accordion" class="btn btn-sm btn-dark mt-2 mb-3">Browse Our Selection</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <video autoplay width="320" height="240"controls loop>
+                    <source src="/img/version2imgs/stock-footage-aquarium-with-cichlids-fish-from-lake-malawi.webm" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row row-content">
+            <div class="col">
+                
+                <!--Accordion starts here-->
+
+                <div id="accordion">
+
+                    <div class="card">
+                        <div role="tab" class="card-header">
+                            <h4>
+                                <a data-toggle="collapse" class="collapsed accordion-category" data-target="#sectionOne">
+                                    African Cichlids
+                                </a>
+                            </h4>
+                            <div class="collapse" id="sectionOne" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <!--Cards inside of accordion - SECTION ONE -->
+
+                                    <div class="row row-fluid justify-content-center">
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="/img/fish/aceimale.jpg" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="/img/fish/bluediamondfemale.jpg" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Blue Diamond Guppy</h4>
+                                               
+                                                <p class="card-text">Purchase Option: pair</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="/img/fish/bluediamondmale.jpg" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Blue Diamond Guppy</h4>
+                                               
+                                                <p class="card-text">Purchase Option: Trio</p>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+
+                                    <!--end of cards - SECTION ONE-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div role="tab" class="card-header">
+                            <h4>
+                                <a class="collapsed accordion-category" data-toggle="collapse" data-target="#sectionTwo">South American Cichlids
+                                </a>
+                            </h4>
+                            <div class="collapse" id="sectionTwo" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <!--cards inside of accordion - SECTION TWO-->
+
+                                    <div class="row row-fluid justify-content-center">
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+
+                                    <!-- end of cards - SECTION TWO -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card d-flex-xl">
+                        <div role="tab" class="card-header">
+                            <h4>
+                                <a class="collapsed accordion-category" data-toggle="collapse" data-target="#sectionThree">Dwarf Cichlids
+                                </a>
+                            </h4>
+                            <div class="collapse" id="sectionThree" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <!-- cards inside of accordion - SECTION THREE -->
+
+                                    <div class="row row-fluid justify-content-center">
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="fishCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+
+                                    <!-- end of cards SECTION THREE -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div role="tab" class="card-header">
+                            <h4>
+                                <a class="collapsed accordion-category" data-toggle="collapse" data-target="#sectionFour">Other Cichlids
+                                </a>
+                            </h4>
+                            <div class="collapse" id="sectionFour" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <!-- Cards for accordion - SECTION FOUR-->
+
+                                    <div class="row row-fluid justify-content-center">
+
+
+
+                                        <div class="card mx-3" id="careCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+                                    
+
+                                        <div class="card mx-3" id="careCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="card mx-3" id="careCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+
+                                        <div class="card mx-3" id="careCard">
+                                            <img src="" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h4 class="card-header">Yellow-Tail Acei</h4>
+                                               
+                                                <p class="card-text">More info on this type of fish...?</p>
+                                            </div>
+                                        
+                                        </div>
+
+
+                                    </div>
+
+                                    <!--end of cards - SECTION FOUR-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+</body>
+</html>
