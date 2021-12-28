@@ -22,7 +22,7 @@ $('.plus-btn').on('click', function (e) {
   }
   dollarTotal = dollarTotal + dollars;
 
-  document.getElementById('lblCartCount').textContent = cartTotal;
+  document.getElementById('lblCartCount').textContent = cartTotal + " fish";
   document.getElementById('lblDollarCount').textContent = '$' + (dollarTotal);
   $input.val(quantity);
 
