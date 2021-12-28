@@ -12,7 +12,7 @@ body{
     color: rgb(205, 242, 248);
 }
 
-h1, .card-header{
+h1, h5, .card-header{
     font-family:'Domine', serif;
 }
 
@@ -20,7 +20,7 @@ h2 {
     font-family:'Licorice', cursive; 
 }
 
-h3 {
+h3, h4 {
     font-family: 'Inconsolata', monospace;
 }
 
