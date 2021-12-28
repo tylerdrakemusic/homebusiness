@@ -65,9 +65,10 @@ a, a.hover {
     box-shadow: 5px 5px 10px 0px;
 }
 
-footer {
+.site-footer {
     background-color: rgb(45, 118, 131);
-    height: 50px;
+    height: 40px;
+    color: rgb(179, 239, 247);
 }
 
 .menuitem {
