@@ -12,14 +12,15 @@ body{
     color: rgb(205, 242, 248);
 }
 
-h1{
+h1, .card-header{
     font-family:'Domine', serif;
 }
+
 h2 {
     font-family:'Licorice', cursive; 
 }
 
-h3, .card-header {
+h3 {
     font-family: 'Inconsolata', monospace;
 }
 
@@ -67,4 +68,26 @@ a, a.hover {
 footer {
     background-color: rgb(45, 118, 131);
     height: 50px;
+}
+
+.menuitem {
+    align-content: center;
+    align-items  : center;
+    font-size    : 1rem;
+    text-align   : center;
+}
+
+input .valuebtn {
+    width: 50%;
+}
+
+.quantity input {
+    -webkit-appearance: none;
+    border            : none;
+    color             : #43484D;
+    font-size         : 16px;
+    font-weight       : 300;
+    pointer-events    : none;
+    text-align        : center;
+    width             : 32px;
 }
