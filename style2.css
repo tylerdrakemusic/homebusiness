@@ -38,8 +38,7 @@ h2 {
 
 .nav-item {
     color:rgb(179, 239, 247);
-    font-family: sans-serif
-    font-size: large;
+    font-family: sans-serif;
 }
 
 a, a.hover {
@@ -52,6 +51,8 @@ a, a.hover {
     border-radius: 100px;
     align-items: center;
     justify-content: center;
+    padding: 15px;
+    font-family: sans-serif;
 
 }
 
