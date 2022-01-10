@@ -1,0 +1,98 @@
+body{
+    background-color: rgb(188, 238, 245);
+}
+.jumbotron h1 {
+    font-family: 'Staatliches', cursive;
+    color: rgb(205, 242, 248);
+    
+}
+
+.jumbotron h2 {
+    font-family: 'Licorice', cursive;
+    color: rgb(205, 242, 248);
+}
+
+h1, h5, .card-header{
+    font-family: 'Staatliches', cursive;
+}
+
+h2 {
+    font-family: 'Licorice', cursive;
+}
+
+
+.jumbotron {
+    background-image: url("/img/version2imgs/pexels-blaque-x-932638.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    margin: 0;
+    padding: 30px;
+    color: whitesmoke;
+}
+
+.navbar {
+    background-color: rgb(45, 118, 131);
+}
+
+.nav-item {
+    color:rgb(179, 239, 247);
+    font-family: sans-serif;
+}
+
+a, a.hover {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-dark{
+    display: flex;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-family: sans-serif;
+
+}
+
+#fishCard {
+    align-items:center;
+    margin: auto;
+    width: 20rem;
+    height: 20rem;
+    box-shadow: 5px 5px 10px 0px;
+    margin-bottom: 20px;
+}
+
+.fishImg{
+    width: 15rem;
+}
+
+.site-footer {
+    background-color: rgb(45, 118, 131);
+    height: 40px;
+    color: rgb(179, 239, 247);
+}
+
+.menuitem {
+    align-content: center;
+    align-items  : center;
+    font-size    : 1rem;
+    text-align   : center;
+}
+
+input .valuebtn {
+    width: 50%;
+}
+
+.quantity input {
+    -webkit-appearance: none;
+    border            : none;
+    color             : #43484D;
+    font-size         : 16px;
+    font-weight       : 300;
+    pointer-events    : none;
+    text-align        : center;
+    width             : 32px;
+}
