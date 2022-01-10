@@ -56,7 +56,7 @@ a, a.hover {
 
 }
 
-#fishCard {
+.fishCard {
     align-items:center;
     margin: auto;
     width: 20rem;
