@@ -74,6 +74,39 @@
       "lastName": "Rush",
       "phone": "3039818782",
       "connection": "Neon Swordtails"
+    },
+    {
+      "firstName": "Bal",
+      "lastName": "A",
+      "phone": "7873490953",
+      "connection": "Mbuna, Angels, Community"
+    },
+    {
+      "firstName": "Norm",
+      "lastName": "Russel",
+      "phone": "3039564254",
+      "connection": "Super cool guy",
+      "shippingAddress": "12165 Tack Dr",
+      "shippingCity": "Parker",
+      "shippingState": "Colorado",
+      "shippingZip": "80134"
+    },
+    {
+      "firstName": "Nicole",
+      "lastName": "Calla",
+      "connection": "NextDoor"
+    },
+    {
+      "firstName": "Norman",
+      "lastName": "Perez",
+      "connection": "NextDoor",
+      "phone": "7202544042"
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Malsam",
+      "connection": "NextDoor, Ocellotus Fry",
+      "phone": "7202544042"
     }
   ]
 }
