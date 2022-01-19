@@ -1,79 +1,112 @@
 {
-    "customerData": [
-        {
-            "firstName": "Tom",
-            "lastName": "Shor",
-            "phone": "3032578095"
-        },
-        {
-            "firstName": "Vicki",
-            "lastName": "Ibison",
-            "phone": "3036175554"
-        },
-        {
-            "firstName": "Jackie",
-            "lastName": "Grant",
-            "phone": "7203090931"
-        },
-        {
-            "firstName": "Tamara",
-            "lastName": "McCarthy",
-            "phone": "7203087310",
-            "shippingAddress" : "16481 Martingale Dr",
-            "shippingCity": "Parker",
-            "shippingState" : "Colorado",
-            "shippingZip" : "80134"
-        },
-        {
-            "firstName": "Calvin",
-            "lastName": "Weng",
-            "phone": "3032171460",
-            "shippingAddress" : "16181 Bluebonnet Dr",
-            "shippingCity": "Parker",
-            "shippingState" : "Colorado",
-            "shippingZip" : "80134"
-        },
-        {
-            "firstName": "Jenna",
-            "lastName": "Miller",
-            "phone": "7123301351"
-        },
-        {
-            "firstName": "Nate",
-            "phone": "2096624889",
-            "shippingAddress" : "7413 S Mobile",
-            "shippingCity": "Aurora",
-            "shippingState" : "Colorado",
-            "connection" : "Loves cichlids"
-        },
-        {
-            "firstName": "Lily",
-            "lastName": "Huang",
-            "phone": "7202884983",
-            "connection" : "CAS smart fish presentation"
-        },
-        {
-            "firstName": "Linda",
-            "lastName": "Olsen",
-            "email" : "linda_9555@msn.com",
-            "connection" : "CAS sweet old lady"
-        },
-        {
-            "firstName": "Kassi",
-            "lastName": "Robbins",
-            "phone": "3037105361",
-            "connection" : ""
-        },
-        {
-            "firstName" : "Gte",
-            "email" : "dwimeisafitri@gmail.com",
-            "connection" : "Indonesia Livebearer Vendor"
-        },
-        {
-            "firstName": "Sonija",
-            "lastName": "Rush",
-            "phone": "3039818782",
-            "connection" : "Neon Swordtails"
-        }
-    ]
+  "customerData": [
+    {
+      "firstName": "Tom",
+      "lastName": "Shor",
+      "phone": "3032578095"
+    },
+    {
+      "firstName": "Vicki",
+      "lastName": "Ibison",
+      "phone": "3036175554"
+    },
+    {
+      "firstName": "Jackie",
+      "lastName": "Grant",
+      "phone": "7203090931"
+    },
+    {
+      "firstName": "Tamara",
+      "lastName": "McCarthy",
+      "phone": "7203087310",
+      "shippingAddress": "16481 Martingale Dr",
+      "shippingCity": "Parker",
+      "shippingState": "Colorado",
+      "shippingZip": "80134"
+    },
+    {
+      "firstName": "Calvin",
+      "lastName": "Weng",
+      "phone": "3032171460",
+      "shippingAddress": "16181 Bluebonnet Dr",
+      "shippingCity": "Parker",
+      "shippingState": "Colorado",
+      "shippingZip": "80134"
+    },
+    {
+      "firstName": "Jenna",
+      "lastName": "Miller",
+      "phone": "7123301351"
+    },
+    {
+      "firstName": "Nate",
+      "phone": "2096624889",
+      "shippingAddress": "7413 S Mobile",
+      "shippingCity": "Aurora",
+      "shippingState": "Colorado",
+      "connection": "Loves cichlids"
+    },
+    {
+      "firstName": "Lily",
+      "lastName": "Huang",
+      "phone": "7202884983",
+      "connection": "CAS smart fish presentation"
+    },
+    {
+      "firstName": "Linda",
+      "lastName": "Olsen",
+      "email": "linda_9555@msn.com",
+      "connection": "CAS sweet old lady"
+    },
+    {
+      "firstName": "Kassi",
+      "lastName": "Robbins",
+      "phone": "3037105361",
+      "connection": "Loves Tyler"
+    },
+    {
+      "firstName": "Gte",
+      "email": "dwimeisafitri@gmail.com",
+      "connection": "Indonesia Livebearer Vendor"
+    },
+    {
+      "firstName": "Sonija",
+      "lastName": "Rush",
+      "phone": "3039818782",
+      "connection": "Neon Swordtails"
+    },
+    {
+      "firstName": "Bal",
+      "lastName": "A",
+      "phone": "7873490953",
+      "connection": "Mbuna, Angels, Community"
+    },
+    {
+      "firstName": "Norm",
+      "lastName": "Russel",
+      "phone": "3039564254",
+      "connection": "Super cool guy",
+      "shippingAddress": "12165 Tack Dr",
+      "shippingCity": "Parker",
+      "shippingState": "Colorado",
+      "shippingZip": "80134"
+    },
+    {
+      "firstName": "Nicole",
+      "lastName": "Calla",
+      "connection": "NextDoor"
+    },
+    {
+      "firstName": "Norman",
+      "lastName": "Perez",
+      "connection": "NextDoor",
+      "phone": "7202544042"
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Malsam",
+      "connection": "NextDoor, Ocellotus Fry",
+      "phone": "7202544042"
+    }
+  ]
 }

@@ -22,7 +22,7 @@ $('.plus-btn').on('click', function (e) {
   }
   dollarTotal = dollarTotal + dollars;
 
-  document.getElementById('lblCartCount').textContent = cartTotal;
+  document.getElementById('lblCartCount').textContent = cartTotal + " fish";
   document.getElementById('lblDollarCount').textContent = '$' + (dollarTotal);
   $input.val(quantity);
 
@@ -44,9 +44,9 @@ $('.minus-btn').on('click', function (e) {
   var $this = $(this);
   var $input = $this.closest('div').find('input');
   var quantity = parseInt($input.val());
-  var dollars = (parseInt($this.closest('div').find('h4')[0].textContent.replace(/[^0-9\.]/g, '')));
+  var dollars = (parseInt($this.closest('div').find('h5')[0].textContent.replace(/[^0-9\.]/g, '')));
   var productName = $this.closest('div.menuitem').find('h4')[0].textContent;
-  var subProduct = $this.closest('div').find('h4')[0].textContent;
+  var subProduct = "needed?";
 
   quantity = isNaN(quantity) ? 0 : quantity;
   if (quantity > 0) {
@@ -61,7 +61,7 @@ $('.minus-btn').on('click', function (e) {
       dollarTotal = 0;
     }
     dollarTotal = dollarTotal - dollars;
-    document.getElementById('lblCartCount').textContent = cartTotal;
+    document.getElementById('lblCartCount').textContent = cartTotal + " fish";
     document.getElementById('lblDollarCount').textContent = '$' + (dollarTotal);
     $input.val(quantity);
 

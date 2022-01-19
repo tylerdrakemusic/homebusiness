@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vibrant Tropical</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style2.css" />
+    <link rel="stylesheet" href="/style.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Domine&family=Inconsolata:wght@300&family=Licorice&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bayon&family=Domine&family=Licorice&family=Raleway:wght@300&family=Reenie+Beanie&family=Staatliches&display=swap"
         rel="stylesheet">
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -34,7 +34,6 @@
                 <h2>Your local fish shop</h2>
             </div>
         </div>
-        </div>
     </header>
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
@@ -46,18 +45,18 @@
             <div class="collapse navbar-collapse" id="vtNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item active mr-3"><a class="nav-link" href="index.html"> Home</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">Story</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">Media</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">Connect</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">FAQ</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="#">Policy</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/about.html">About</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/story.html">Story</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/media.html">Media</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/connect.html">Connect</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/faq.html">FAQ</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/policy.html">Policy</a></li>
                 </ul>
             </div>
             <div style="display: flex; justify-content: flex-end; margin:0; padding:0; align-items: center;">
-                <p style="color: red; background-color: transparent;">Under Construction... </p>
-                <a href="pages/echeckout.html"><img src="img/undraw/undraw_empty_cart_co35.svg"
-                        style="width:4.913rem; "></a>
+                <p class="construction" style="color: red; background-color: transparent;">Under Construction... </p>
+                <a class="cartImg"href="pages/echeckout.html"><img src="img/undraw/undraw_empty_cart_co35.svg"
+                        style="width:4.3rem;"></a>
                 <div>
                     <span class='badge badge-warning' id='lblCartCount'></span>
                     <span style="background-color: green;" class='badge badge-warning' id='lblDollarCount'></span>
@@ -116,12 +115,14 @@
 
                                     <div class="row row-fluid justify-content-center">
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">Yellow-tail Acei</h4>
 
-                                                <img class="card-img-top img-thumbnail"
-                                                    src="/img/fish/AfricanCichlidAceiMale.jpg" alt="" />
+                                                <video autoplay width=95% controls loop muted>
+                                                    <source src="/videos/fish/AfricanCichlidAcei.MOV" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
 
                                                 <b class="quantity mb-2">
                                                     <!--ToDo 
@@ -151,7 +152,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">Red Zebra</h4>
                                                 <video autoplay width=95% controls loop muted>
@@ -175,7 +176,7 @@
                                         </div>
 
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">White Lab</h4>
                                                 <video autoplay width=95% controls loop muted>
@@ -198,7 +199,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">Hongi</h4>
                                                 <video autoplay width=95% controls loop muted>
@@ -242,10 +243,9 @@
 
                                     <div class="row row-fluid justify-content-center">
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
-                                                <h4 class="card-header">Blue Diamond Guppy</h4>
-                                                <p class="card-text">Purchase Option: Male</p>
+                                                <h4 class="card-header">Blue Diamond Guppy (male)</h4>
                                                 <video autoplay width=95% controls loop muted>
                                                     <source src="/videos/fish/LiveBearerBlueDiamondGuppyMale.MOV"
                                                         type="video/mp4">
@@ -263,11 +263,17 @@
                                                         <img src="img/vectorgraphics/plus.svg" alt="" />
                                                     </button>
                                                 </b>
+                                            </div>
+                                        </div>
+                                        <div class="card mx-3 fishCard">
+                                            <div class="menuitem">
+                                                <h4 class="card-header">Blue Diamond Guppy (female)</h4>
 
-                                                <p class="card-text">Purchase Option: Female</p>
-
-                                                <img class="card-img-top img-thumbnail"
-                                                    src="/img/fish/LiveBearerGuppyBlueDiamondFemale.jpg" alt="" />
+                                                <video autoplay width=95% controls loop muted>
+                                                    <source src="/videos/fish/LiveBearerBlueDiamondGuppyFemale.MOV"
+                                                        type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
 
                                                 <b class="quantity mb-2">
                                                     <!--TD get price and availability from config-->
@@ -283,10 +289,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mx-3" id="fishCard">
+
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
-                                                <h4 class="card-header">Bronco Guppy</h4>
-                                                <p class="card-text">Purchase Option: Male</p>
+                                                <h4 class="card-header">Bronco Guppy (male)</h4>
+
                                                 <video autoplay width=95% controls loop muted>
                                                     <source src="/videos/fish/LiveBearerBroncoGuppyMale.MOV"
                                                         type="video/mp4">
@@ -304,12 +311,14 @@
                                                         <img src="img/vectorgraphics/plus.svg" alt="" />
                                                     </button>
                                                 </b>
-
-                                                <p class="card-text">Purchase Option: Female</p>
-
+                                            </div>
+                                        </div>
+                                        <div class="card mx-3 fishCard">
+                                            <div class="menuitem">
+                                                <h4 class="card-header">Bronco Guppy (female)</h4>
                                                 <video autoplay width=95% controls loop muted>
-                                                    <source src="/videos/fish/LiveBearerBroncoGuppyFemale.MOV"
-                                                        type="video/mp4">
+                                                    <!--We need an image or video of the Bronco Guppy Female Here-->
+                                                    <source src="" type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
 
@@ -327,7 +336,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">Dalmatian Molly</h4>
                                                 <video autoplay width=95% controls loop muted>
@@ -351,7 +360,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
                                                 <h4 class="card-header">Red Wag Platy</h4>
                                                 <video autoplay width=95% controls loop muted>
@@ -373,86 +382,41 @@
                                                 </b>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="card mx-3" id="fishCard">
-                                        <div class="menuitem">
-                                            <h4 class="card-header">Neon Swordtail</h4>
-                                            <p class="card-text">Purchase Option: Male</p>
-                                            <video autoplay width=95% controls loop muted>
-                                                <source src="/videos/fish/LiveBearerNeonSwordtailMale.MOV"
-                                                    type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-
-                                            <b class="quantity mb-2">
-                                                <!--TD get price and availability from config-->
-                                                <h5>$7 </h5>
-                                                <button id="single" class="minus-btn" type="button" name="button">
-                                                    <img src="img/vectorgraphics/minus.svg" alt="" />
-                                                </button>
-                                                <input class="valuebtn" type="text" name="name" value="0">
-                                                <button class="plus-btn" type="button" name="button" value=1>
-                                                    <img src="img/vectorgraphics/plus.svg" alt="" />
-                                                </button>
-                                            </b>
-
-                                            <p class="card-text">Purchase Option: Female</p>
-
-                                            <video autoplay width=95% controls loop muted>
-                                                <source src="/videos/fish/LiveBearerNeonSwordtailFemale.MOV"
-                                                    type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-
-                                            <b class="quantity mb-2">
-                                                <!--TD get price and availability from config-->
-                                                <h5>$7 </h5>
-                                                <button id="single" class="minus-btn" type="button" name="button">
-                                                    <img src="img/vectorgraphics/minus.svg" alt="" />
-                                                </button>
-                                                <input class="valuebtn" type="text" name="name" value="0">
-                                                <button class="plus-btn" type="button" name="button" value=1>
-                                                    <img src="img/vectorgraphics/plus.svg" alt="" />
-                                                </button>
-                                            </b>
-                                        </div>
-                                    </div>
-
-                                    <!-- end of cards - SECTION Livebearers -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card d-flex-xl">
-                        <div role="tab" class="card-header">
-                            <h3>
-                                <a class="collapsed accordion-category" data-toggle="collapse"
-                                    data-target="#sectionThree">Fish from Lake Tanganyika
-                                </a>
-                            </h3>
-                            <div class="collapse" id="sectionThree" data-parent="#accordion">
-                                <div class="card-body">
-
-                                    <!-- cards inside of accordion - Fish from Lake Tanganyika  -->
-
-                                    <div class="row row-fluid justify-content-center">
-
-                                        <div class="card mx-3" id="fishCard">
+                                        <div class="card mx-3 fishCard">
                                             <div class="menuitem">
-                                                <h4 class="card-header">Pearly Occellatus</h4>
+                                                <h4 class="card-header">Neon Swordtail (male)</h4>
                                                 <video autoplay width=95% controls loop muted>
-                                                    <source src="/videos/fish/TanganyikaPearlyOcellatus2.MOV"
+                                                    <source src="/videos/fish/LiveBearerNeonSwordtailMale.MOV"
                                                         type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
 
                                                 <b class="quantity mb-2">
                                                     <!--TD get price and availability from config-->
-                                                    <h5>$13 </h5>
+                                                    <h5>$7 </h5>
+                                                    <button id="single" class="minus-btn" type="button" name="button">
+                                                        <img src="img/vectorgraphics/minus.svg" alt="" />
+                                                    </button>
+                                                    <input class="valuebtn" type="text" name="name" value="0">
+                                                    <button class="plus-btn" type="button" name="button" value=1>
+                                                        <img src="img/vectorgraphics/plus.svg" alt="" />
+                                                    </button>
+                                                </b>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mx-3 fishCard">
+                                            <div class="menuitem">
+                                                <h4 class="card-header">Neon Swordtail (female)</h4>
+                                                <video autoplay width=95% controls loop muted>
+                                                    <source src="/videos/fish/LiveBearerNeonSwordtailFemale.MOV"
+                                                        type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+
+                                                <b class="quantity mb-2">
+                                                    <!--TD get price and availability from config-->
+                                                    <h5>$7 </h5>
                                                     <button id="single" class="minus-btn" type="button" name="button">
                                                         <img src="img/vectorgraphics/minus.svg" alt="" />
                                                     </button>
@@ -466,50 +430,100 @@
 
                                     </div>
 
-                                    <!-- end of cards Fish from Lake Tanganyika -->
 
                                 </div>
+
+                                <!-- end of cards - SECTION Livebearers -->
+
                             </div>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div role="tab" class="card-header">
-                            <h3>
-                                <a class="collapsed accordion-category" data-toggle="collapse"
-                                    data-target="#sectionFour">Catfish and Algae Eaters
-                                </a>
-                            </h3>
-                            <div class="collapse" id="sectionFour" data-parent="#accordion">
-                                <div class="card-body">
-
-                                    <!-- Cards for accordion - Catfish and Algae Eaters-->
-
-                                    <div class="row row-fluid justify-content-center">
+                </div>
 
 
+                <div class="card d-flex-xl">
+                    <div role="tab" class="card-header">
+                        <h3>
+                            <a class="collapsed accordion-category" data-toggle="collapse"
+                                data-target="#sectionThree">Fish from Lake Tanganyika
+                            </a>
+                        </h3>
+                        <div class="collapse" id="sectionThree" data-parent="#accordion">
+                            <div class="card-body">
+
+                                <!-- cards inside of accordion - Fish from Lake Tanganyika  -->
+
+                                <div class="row row-fluid justify-content-center">
+
+                                    <div class="card mx-3 fishCard">
+                                        <div class="menuitem">
+                                            <h4 class="card-header">Pearly Occellatus</h4>
+                                            <video autoplay width=95% controls loop muted>
+                                                <source src="/videos/fish/TanganyikaPearlyOcellatus2.MOV"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+
+                                            <b class="quantity mb-2">
+                                                <!--TD get price and availability from config-->
+                                                <h5>$13 </h5>
+                                                <button id="single" class="minus-btn" type="button" name="button">
+                                                    <img src="img/vectorgraphics/minus.svg" alt="" />
+                                                </button>
+                                                <input class="valuebtn" type="text" name="name" value="0">
+                                                <button class="plus-btn" type="button" name="button" value=1>
+                                                    <img src="img/vectorgraphics/plus.svg" alt="" />
+                                                </button>
+                                            </b>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- end of cards Fish from Lake Tanganyika -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div role="tab" class="card-header">
+                        <h3>
+                            <a class="collapsed accordion-category" data-toggle="collapse"
+                                data-target="#sectionFour">Catfish and Algae Eaters
+                            </a>
+                        </h3>
+                        <div class="collapse" id="sectionFour" data-parent="#accordion">
+                            <div class="card-body">
+
+                                <!-- Cards for accordion - Catfish and Algae Eaters-->
+
+                                <div class="row row-fluid justify-content-center">
+                                    <div class="card mx-3 fishCard">
                                         <div class="menuitem">
                                             <h4 class="card-header">Calico Bristlenose Pleco</h4>
 
                                             <img class="card-img-top img-thumbnail"
-                                                src="/img/fish/CatfishCalicoBristlenosePleco.jpg" alt="" />
+                                                src="/img/fish/CatfishCalicoBristlenosePleco.jpg" alt=""
+                                                style="width: 15rem" />
 
                                             <b class="quantity mb-2">
                                                 <!--ToDo 
-                                                    Get Price From Product Props in Configuration File Instead of the Hardcoded h5 price see /src/resources/application.yml)
-                                                    Each fish will have its own product props.  Spike, should we Link product.props.name with with the h4 card-header value
-                                                    or something more advanced????
-
-                                                    Other configurable properties?
-                                                
-                                                        - Product options
-                                                        - Size range of expected fish aka 2-4 inches
-                                                        - Name
-                                                        - accordion-category?
+                                                        Get Price From Product Props in Configuration File Instead of the Hardcoded h5 price see /src/resources/application.yml)
+                                                        Each fish will have its own product props.  Spike, should we Link product.props.name with with the h4 card-header value
+                                                        or something more advanced????
+    
+                                                        Other configurable properties?
                                                     
-                                                    Purpose: Frontend and Backend are both aware and in sync on
-                                                     the product properties like price, bagging information, and availability of the product                         
-                                                -->
+                                                            - Product options
+                                                            - Size range of expected fish aka 2-4 inches
+                                                            - Name
+                                                            - accordion-category?
+                                                        
+                                                        Purpose: Frontend and Backend are both aware and in sync on
+                                                         the product properties like price, bagging information, and availability of the product                         
+                                                    -->
                                                 <h5>$4 </h5>
                                                 <button id="single" class="minus-btn" type="button" name="button">
                                                     <img src="img/vectorgraphics/minus.svg" alt="" />
@@ -520,30 +534,29 @@
                                                 </button>
                                             </b>
                                         </div>
-
-
                                     </div>
-
-                                    <!--end of cards - SECTION Catfish and Algae Eaters-->
-
                                 </div>
+
+                                <!--end of cards - SECTION Catfish and Algae Eaters-->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-            <script type=text/javascript src="javascript.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
-                integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
-                crossorigin="anonymous"></script>
+        <script type=text/javascript src="javascript.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+            integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
