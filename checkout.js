@@ -75,7 +75,7 @@ function handleSubmit(event) {
       products.products.push(element);
     }
   }
-
+  
   requestBody.products = products.products;
   //console.log(requestBody.products);
   userAction(requestBody);
