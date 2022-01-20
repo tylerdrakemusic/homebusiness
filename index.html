@@ -499,16 +499,29 @@
                                 <!-- Cards for accordion - Catfish and Algae Eaters-->
 
                                 <div class="row row-fluid justify-content-center">
+
                                     <div class="card mx-3 fishCard">
                                         <div class="menuitem">
                                             <h4 class="card-header">Calico Bristlenose Pleco</h4>
-
-                                            <img class="card-img-top img-thumbnail"
-                                                src="/img/fish/CatfishCalicoBristlenosePleco.jpg" alt=""
-                                                style="width: 15rem" />
+                                            <video autoplay width=95% controls loop muted>
+                                                <source src="videos/fish/CatFishBristleNosePleco.MOV"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
 
                                             <b class="quantity mb-2">
-                                                <!--ToDo 
+                                                <!--TD get price and availability from config-->
+                                                <h5>$4 </h5>
+                                                <button id="single" class="minus-btn" type="button" name="button">
+                                                    <img src="img/vectorgraphics/minus.svg" alt="" />
+                                                </button>
+                                                <input class="valuebtn" type="text" name="name" value="0">
+                                                <button class="plus-btn" type="button" name="button" value=1>
+                                                    <img src="img/vectorgraphics/plus.svg" alt="" />
+                                                </button>
+                                            </b>
+                                        </div>
+                                         <!--ToDo 
                                                         Get Price From Product Props in Configuration File Instead of the Hardcoded h5 price see /src/resources/application.yml)
                                                         Each fish will have its own product props.  Spike, should we Link product.props.name with with the h4 card-header value
                                                         or something more advanced????
@@ -523,7 +536,18 @@
                                                         Purpose: Frontend and Backend are both aware and in sync on
                                                          the product properties like price, bagging information, and availability of the product                         
                                                     -->
-                                                <h5>$4 </h5>
+                                    </div>
+                                    <div class="card mx-3 fishCard">
+                                        <div class="menuitem">
+                                            <h4 class="card-header" style="font-size: 1.2rem;">Albino Calico Bristlenose Pleco</h4>
+                                            <video autoplay width=95% controls loop muted>
+                                                <source src="/videos/fish/CatfishAlbinoCalicoBristlenosePleco.MOV">
+                                                Your browser does not support the video tag.
+                                            </video>
+
+                                            <b class="quantity mb-2">
+                                                <!--TD get price and availability from config-->
+                                                <h5>$4</h5>
                                                 <button id="single" class="minus-btn" type="button" name="button">
                                                     <img src="img/vectorgraphics/minus.svg" alt="" />
                                                 </button>
@@ -534,7 +558,6 @@
                                             </b>
                                         </div>
                                     </div>
-                                </div>
 
                                 <!--end of cards - SECTION Catfish and Algae Eaters-->
 
