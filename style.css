@@ -222,6 +222,10 @@ footer {
   text-align: center;
 }
 
+a:hover{
+    color: rgb(45, 118, 131);
+}
+
 @media (max-width: 600px) {
 
     .col-25 {
