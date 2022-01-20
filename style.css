@@ -183,6 +183,43 @@ footer {
     border-radius: 3px;
 } */
 
+.carousel-caption{
+    background-color: rgba(0, 0, 0, 0.5); 
+    font-size: .75rem;
+    max-width: 100%;
+    width:100%;
+    left: 0;
+}
+
+.carousel-caption h3 {
+    font-size: 1.25rem;
+}
+
+ 
+.carousel {
+    border: solid rgb(45, 118, 131);
+    width: 26rem;
+    height: auto;
+}
+  
+#carouselButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.carousel-item {
+  text-align: center;
+}
 
 @media (max-width: 600px) {
 
