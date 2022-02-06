@@ -1,7 +1,7 @@
 spring:
   application.name: FishApplication
   config:
-    import: "optional:configserver:http://localhost:8888/"
+    import: "optional:configserver:https://vibrant-tropical-config-server.herokuapp.com/"
 
 
   data.mongodb.uri: mongodb+srv://vt-service:oarQOT2nBq6xLK7U@developmentcluster.kchsj.mongodb.net/vt-dev?authSource=admin&replicaSet=atlas-47erwk-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true
@@ -32,6 +32,7 @@ product:
   props:
     -
       name: Yellow-tail Acei
+      price: 
       perbag: 4
       length: 4
       width: 2

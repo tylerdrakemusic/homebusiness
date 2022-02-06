@@ -86,6 +86,9 @@ window.onload = function () {
   if (window.location.href == sessionStorage.getItem("windowref")) {
     sessionStorage.clear();
   }
+  fetch("https://vibrant-tropical-config-server.herokuapp.com/FishApplication/default")
+  .then(response => response.json())
+  .then(json => console.log(json.glossary.title));
 }
 
 //Code below to make button pause/play - not working
