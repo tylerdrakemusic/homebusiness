@@ -32,6 +32,7 @@ product:
   props:
     -
       name: Yellow-tail Acei
+      price: 
       perbag: 4
       length: 4
       width: 2
