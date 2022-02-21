@@ -1,0 +1,2 @@
+GET http://localhost:8080/products
+CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
