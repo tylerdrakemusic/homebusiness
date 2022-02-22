@@ -1,7 +1,6 @@
 package com.vt.fish.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vt.fish.logging.annotation.VibrantLog;
 import com.vt.fish.model.product.Product;
 import com.vt.fish.service.VibrantProductsService;
