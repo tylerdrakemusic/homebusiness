@@ -1,9 +1,9 @@
 package com.vt.fish.service;
 
-import com.vt.fish.config.ProductConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
 import com.vt.fish.logging.annotation.VibrantLog;
-import com.vt.fish.model.request.Product;
+import com.vt.fish.model.product.Product;
+import com.vt.fish.model.request.ProductOrder;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.*;
 import com.vt.fish.model.roadieresponse.EstimateResponse;
@@ -22,6 +22,7 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -29,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
 public class RoadieRequestService {
 
     private final RoadieRequestServiceConfig roadieRequestServiceConfig;
-    private final ProductConfig productConfig;
+    private final DatabaseService databaseService;
     private static final String NAME = "name";
     private static final String PERBAG = "perbag";
     private static final String LENGTH = "length";
@@ -37,22 +38,22 @@ public class RoadieRequestService {
     private static final String HEIGHT = "height";
     private static final String WEIGHT = "weight";
 
-    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig, ProductConfig productConfig) {
+    public RoadieRequestService(RoadieRequestServiceConfig roadieRequestServiceConfig, DatabaseService databaseService) {
         this.roadieRequestServiceConfig = roadieRequestServiceConfig;
-        this.productConfig = productConfig;
+        this.databaseService = databaseService;
     }
 
-    private ArrayList<RoadieItem> mapBaggingItems(ArrayList<Product> products) {
+    private ArrayList<RoadieItem> mapBaggingItems(ArrayList<ProductOrder> productOrders) {
         ArrayList<RoadieItem> roadieItemArrayList = new ArrayList<>();
-        for (Product product : products) {
-            for (Map<String, Object> map : productConfig.getProps()) {
-                if (product.getProductName().equalsIgnoreCase((String) map.get(NAME))) {
-                    int perbag = (Integer) map.get(PERBAG);
-                    for (int i = 0; i < product.getQuantity(); i += perbag) {
-                        int quantity = product.getQuantity() - i < perbag ? product.getQuantity() % perbag : perbag;
-                        roadieItemArrayList.add(new RoadieItem(roadieRequestServiceConfig.getProductDescription(), product.getProductName(),
-                                product.getDollars() * quantity, quantity, (Integer) map.get(LENGTH),
-                                (Integer) map.get(WIDTH), (Integer) map.get(HEIGHT), (Integer) map.get(WEIGHT)));
+        for (ProductOrder productOrder : productOrders) {
+            for (Product product : databaseService.fetchProducts()) {
+                if (productOrder.getProductName().equalsIgnoreCase(product.getName())) {
+                    int perbag = product.getPerBag();
+                    for (int i = 0; i < productOrder.getQuantity(); i += perbag) {
+                        int quantity = productOrder.getQuantity() - i < perbag ? productOrder.getQuantity() % perbag : perbag;
+                        roadieItemArrayList.add(new RoadieItem(roadieRequestServiceConfig.getProductDescription(), productOrder.getProductName(),
+                                productOrder.getDollars() * quantity, quantity, product.getBagLength(),
+                                product.getBagWidth(), product.getBagHeight(), product.getBagWeight()));
                     }
                 }
             }
@@ -62,7 +63,7 @@ public class RoadieRequestService {
 
     @VibrantLog(before = "Building estimate request", after = "Done building estimate request", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public EstimateRequest buildEstimateRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProducts());
+        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProductOrders());
 
 
         RoadieAddress pickupAddress = new RoadieAddress(roadieRequestServiceConfig.getPickupName(), "0",
@@ -88,10 +89,10 @@ public class RoadieRequestService {
 
     @VibrantLog(before = "Building shipment request", after = "Done building shipment request", vibrantTropicalRequestId = "#{vibrantTropicalOrderRequest.vibrantTropicalRequestId}")
     public ShipmentRequest buildShipmentRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProducts());
+        ArrayList<RoadieItem> roadieItemArrayList = mapBaggingItems(vibrantTropicalOrderRequest.getProductOrders());
         StringBuilder description = new StringBuilder();
-        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
-            description.append(product.getProductName()).append(" ");
+        for (ProductOrder productOrder : vibrantTropicalOrderRequest.getProductOrders()) {
+            description.append(productOrder.getProductName()).append(" ");
         }
         description.append("live fish.");
         RoadieAddress pickupAddress = new RoadieAddress("Vibrant Tropical Home", "1",

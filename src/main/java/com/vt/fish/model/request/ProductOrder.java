@@ -1,15 +1,15 @@
 package com.vt.fish.model.request;
 
-public class Product {
+public class ProductOrder {
     private double dollars;
     private String productName;
     private int quantity;
     private String subProduct;
 
-    public Product() {
+    public ProductOrder() {
     }
 
-    public Product(double dollars, String productName, int quantity, String subProduct) {
+    public ProductOrder(double dollars, String productName, int quantity, String subProduct) {
         this.dollars = dollars;
         this.productName = productName;
         this.quantity = quantity;
