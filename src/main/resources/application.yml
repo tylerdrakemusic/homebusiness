@@ -28,39 +28,4 @@ roadie:
   estimate-path: /v1/estimates
   shipment-path: /v1/shipments
 
-product:
-  props:
-    -
-      name: Yellow-tail Acei
-      price: 
-      perbag: 4
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-      available-count: 5
-    -
-      name: Bronco Guppy Male
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-      available-count: 15
-    -
-      name: Blue Diamond Guppy Male
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-      available-count: 15
-    -
-      name: Red Wagtail Platy
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-      available-count: 8
 

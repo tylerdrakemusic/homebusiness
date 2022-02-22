@@ -1,7 +1,7 @@
 package com.vt.fish.service;
 
-import com.vt.fish.config.ProductConfig;
 import com.vt.fish.config.RoadieRequestServiceConfig;
+import com.vt.fish.model.product.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
 import com.vt.fish.model.roadierequest.RoadieAddress;
@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -26,41 +27,28 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {RoadieRequestServiceConfig.class, ProductConfig.class})
+@SpringBootTest(classes = {RoadieRequestServiceConfig.class})
 public class RoadieRequestServiceTest {
 
     @Mock
     private RoadieRequestServiceConfig roadieRequestServiceConfig;
     @Mock
-    private ProductConfig productConfig;
+    private DatabaseService databaseService;
     private RoadieRequestService roadieRequestService;
 
     @Before
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        roadieRequestService = new RoadieRequestService(roadieRequestServiceConfig, productConfig);
+        roadieRequestService = new RoadieRequestService(roadieRequestServiceConfig, databaseService);
 
-        ArrayList<Map<String,Object>> baggingProps = new ArrayList<>();
-        LinkedHashMap<String,Object> broncoProps = new LinkedHashMap<>();
-        LinkedHashMap<String,Object> wagTailProps = new LinkedHashMap<>();
+        List<Product> products = new ArrayList<>();
 
-        broncoProps.put("name","Bronco Guppy");
-        broncoProps.put("perbag",6);
-        broncoProps.put("length",4);
-        broncoProps.put("width",2);
-        broncoProps.put("height",8);
-        broncoProps.put("weight",1);
 
-        wagTailProps.put("name","Red Wagtail Platy");
-        wagTailProps.put("perbag",6);
-        wagTailProps.put("length",4);
-        wagTailProps.put("width",2);
-        wagTailProps.put("height",8);
-        wagTailProps.put("weight",1);
-        baggingProps.add(broncoProps);
-        baggingProps.add(wagTailProps);
-
-        when(productConfig.getProps()).thenReturn(baggingProps);
+        Product broncoProps = new Product("Bronco Guppy Male",15,6,4,2,8,1,4,"","");
+        Product wagTailProps = new Product("Red Wagtail Platy",9,6,4,2,8,1,5,"","");
+        products.add(broncoProps);
+        products.add(wagTailProps);
+        when(databaseService.fetchProducts()).thenReturn(products);
     }
 
     @Test
@@ -96,8 +84,8 @@ public class RoadieRequestServiceTest {
                         .format(DateUtility.addHoursToJavaUtilDate(expectedVibrantTropicalOrderRequest.getTimeStamp(), 2)),
                 actualShipmentRequest.getRoadieTimeWindow().getEnd());
 
-        assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy") && p.getValue()==18));
-        assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy") && p.getValue()==9));
+        assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy Male") && p.getValue()==18));
+        assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy Male") && p.getValue()==9));
         assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Red Wagtail Platy") && p.getValue()==18));
         assertTrue(actualShipmentRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Red Wagtail Platy") && p.getValue()==3));
         assertEquals(4, actualShipmentRequest.getRoadieItemList().size());
@@ -137,8 +125,8 @@ public class RoadieRequestServiceTest {
                         .format(DateUtility.addHoursToJavaUtilDate(expectedVibrantTropicalOrderRequest.getTimeStamp(), 2)),
                 actualEstimateRequest.getRoadieTimeWindow().getEnd());
 
-        assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy") && p.getValue()==18));
-        assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy") && p.getValue()==9));
+        assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy Male") && p.getValue()==18));
+        assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Bronco Guppy Male") && p.getValue()==9));
         assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Red Wagtail Platy") && p.getValue()==18));
         assertTrue(actualEstimateRequest.getRoadieItemList().stream().anyMatch(p->p.getReferenceId().equals("Red Wagtail Platy") && p.getValue()==3));
         assertEquals(4, actualEstimateRequest.getRoadieItemList().size());

@@ -1,6 +1,7 @@
 package com.vt.fish.service;
 
 import com.vt.fish.logging.VibrantLogger;
+import com.vt.fish.model.product.Product;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.response.SubordinateResponse;
 import com.vt.fish.model.roadierequest.EstimateRequest;
@@ -11,13 +12,18 @@ import com.vt.fish.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 public record DatabaseService(
         VibrantTropicalOrderRequestRepository vibrantTropicalOrderRequestRepository,
-        EstimateRequestRepository estimateRequestRepository, EstimateResponseRepository estimateResponseRepository,
-        ShipmentRequestRepository shipmentRequestRepository, ShipmentResponseRepository shipmentResponseRepository,
-        SubordinateResponseRepository subordinateResponseRepository, VibrantLogger vibrantLogger) {
+        EstimateRequestRepository estimateRequestRepository,
+        EstimateResponseRepository estimateResponseRepository,
+        ShipmentRequestRepository shipmentRequestRepository,
+        ShipmentResponseRepository shipmentResponseRepository,
+        SubordinateResponseRepository subordinateResponseRepository,
+        ProductRepository productRepository,
+        VibrantLogger vibrantLogger) {
 
     public void saveVibrantTropicalOrderRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
         vibrantLogger.info("Persisting Vibrant Tropical request " + vibrantTropicalOrderRequest.getVibrantTropicalRequestId());
@@ -53,5 +59,10 @@ public record DatabaseService(
         vibrantLogger.info("Persisting shipment response");
         shipmentResponse.setTimeStamp(GregorianCalendar.getInstance().getTime());
         shipmentResponseRepository.save(shipmentResponse);
+    }
+
+    public List<Product> fetchProducts(){
+        vibrantLogger.info("Fetching products from database");
+        return productRepository.findAll();
     }
 }

@@ -33,13 +33,15 @@ public class DatabaseServiceTest {
     @Mock
     private SubordinateResponseRepository subordinateResponseRepository;
     @Mock
+    private ProductRepository productRepository;
+    @Mock
     private VibrantLogger vibrantLogger;
 
     @Before
     public void setup() {
         MockitoAnnotations.openMocks(this);
         databaseService = new DatabaseService(vibrantTropicalOrderRequestRepository, estimateRequestRepository,
-                estimateResponseRepository, shipmentRequestRepository, shipmentResponseRepository, subordinateResponseRepository, vibrantLogger);
+                estimateResponseRepository, shipmentRequestRepository, shipmentResponseRepository, subordinateResponseRepository, productRepository, vibrantLogger);
     }
 
     @Test
@@ -91,5 +93,11 @@ public class DatabaseServiceTest {
         subordinateResponse.setVibrantTropicalRequestId(requestId);
         databaseService.saveSubordinateResponse(subordinateResponse);
         verify(subordinateResponseRepository).save(argThat(s -> requestId.equals(s.getVibrantTropicalRequestId())));
+    }
+
+    @Test
+    public void products_shouldBeFound(){
+        databaseService.fetchProducts();
+        verify(productRepository).findAll();
     }
 }
