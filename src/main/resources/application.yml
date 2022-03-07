@@ -1,6 +1,10 @@
 spring:
   application.name: FishApplication
+  cloud:
+    config.username: VibrantTropical
+    config.password: ccqw2vxOZ5KGa
   config:
+    #import: "optional:configserver:http://localhost:8888/"
     import: "optional:configserver:https://vibrant-tropical-config-server.herokuapp.com/"
 
 
