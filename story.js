@@ -57,7 +57,7 @@ const STORYLIST = [
         id: 9,
         name: "Fish Stand Design",
         image: "/img/story/FishStandDesign.jpg",
-        description: ""
+        description: "Original design plans for basement aquarium"
     },
     {
         id: 10,
@@ -69,7 +69,7 @@ const STORYLIST = [
         id: 11,
         name: "Grandpa Working on Fish Rack",
         image: "/img/story/GrandpaWorkingOnFishRack.jpg",
-        description: ""
+        description: "My grandfather at 90 years old, a lifelong engineer and woodworker, helping me build my tank racks."
     },
     {
         id: 12,
