@@ -41,7 +41,7 @@ public class VibrantTropicalOrderRequest {
     @NotEmpty
     private String expYear;
     private String policyCheckbox;
-    private ArrayList<Product> products;
+    private ArrayList<ProductOrder> productOrders;
     @JsonIgnore
     private final String vibrantTropicalRequestId;
     @JsonIgnore
@@ -131,8 +131,8 @@ public class VibrantTropicalOrderRequest {
         return policyCheckbox;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public ArrayList<ProductOrder> getProductOrders() {
+        return productOrders;
     }
 
     public Date getTimeStamp() {
@@ -175,8 +175,8 @@ public class VibrantTropicalOrderRequest {
         return shippingPhone;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setProducts(ArrayList<ProductOrder> productOrders) {
+        this.productOrders = productOrders;
     }
 
     public void setShippingAddress(String shippingAddress) {
@@ -213,8 +213,8 @@ public class VibrantTropicalOrderRequest {
 
     public double getTotalOrderPrice() {
         double price = 0;
-        for (Product product : this.getProducts()) {
-            price += product.getDollars() * product.getQuantity();
+        for (ProductOrder productOrder : this.getProductOrders()) {
+            price += productOrder.getDollars() * productOrder.getQuantity();
         }
         return price;
     }

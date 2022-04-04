@@ -2,9 +2,8 @@ package com.vt.fish.service;
 
 import com.vt.fish.controller.special.OrderOutOfRangeException;
 import com.vt.fish.logging.VibrantLogger;
-import com.vt.fish.logging.annotation.EnableVibrantLogging;
 import com.vt.fish.logging.annotation.VibrantLog;
-import com.vt.fish.model.request.Product;
+import com.vt.fish.model.request.ProductOrder;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.EstimateRequest;
 import com.vt.fish.model.roadierequest.ShipmentRequest;
@@ -91,14 +90,14 @@ public class VibrantTropicalService {
 
     //todo: test
     private void massageRequest(VibrantTropicalOrderRequest vibrantTropicalOrderRequest) {
-        if (vibrantTropicalOrderRequest.getProducts() == null) {
+        if (vibrantTropicalOrderRequest.getProductOrders() == null) {
             vibrantTropicalOrderRequest.setProducts(new ArrayList<>());
         }
-        for (Product product : vibrantTropicalOrderRequest.getProducts()) {
-            if (product.getSubProduct().toLowerCase().contains("pair")) {
-                product.setQuantity(product.getQuantity() * 2);
-            } else if (product.getSubProduct().toLowerCase().contains("trio")) {
-                product.setQuantity(product.getQuantity() * 3);
+        for (ProductOrder productOrder : vibrantTropicalOrderRequest.getProductOrders()) {
+            if (productOrder.getSubProduct().toLowerCase().contains("pair")) {
+                productOrder.setQuantity(productOrder.getQuantity() * 2);
+            } else if (productOrder.getSubProduct().toLowerCase().contains("trio")) {
+                productOrder.setQuantity(productOrder.getQuantity() * 3);
             }
         }
         cloneShipping(vibrantTropicalOrderRequest);

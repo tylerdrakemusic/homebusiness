@@ -15,7 +15,7 @@ CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
   "cvv": "123",
   "expMonth": "12",
   "expYear": "2023",
-  "products": [
+  "productOrders": [
     {
       "dollars": 10,
       "productName": "Yellow-tail Acei",

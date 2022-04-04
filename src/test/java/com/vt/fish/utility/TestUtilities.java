@@ -1,6 +1,6 @@
 package com.vt.fish.utility;
 
-import com.vt.fish.model.request.Product;
+import com.vt.fish.model.request.ProductOrder;
 import com.vt.fish.model.request.VibrantTropicalOrderRequest;
 import com.vt.fish.model.roadierequest.*;
 
@@ -66,10 +66,10 @@ public class TestUtilities {
         return vibrantTropicalOrderRequest;
     }
 
-    private static ArrayList<Product> buildProductsSample() {
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(3, "Bronco Guppy", 9, "Trio"));
-        products.add(new Product(3, "Red Wagtail Platy", 7, "Happy"));
-        return products;
+    private static ArrayList<ProductOrder> buildProductsSample() {
+        ArrayList<ProductOrder> productOrders = new ArrayList<>();
+        productOrders.add(new ProductOrder(3, "Bronco Guppy Male", 9, "Trio"));
+        productOrders.add(new ProductOrder(3, "Red Wagtail Platy", 7, "Happy"));
+        return productOrders;
     }
 }
