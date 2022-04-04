@@ -86,7 +86,13 @@ window.onload = function () {
   if (window.location.href == sessionStorage.getItem("windowref")) {
     sessionStorage.clear();
   }
-  fetch("https://vibrant-tropical-config-server.herokuapp.com/FishApplication/default")
+  readConfiguration("http://localhost:8888/FishApplication/default")
+}
+
+function readConfiguration(url){
+  console.log(url)
+  fetch(url)
+  .then(console.log(response))
   .then(response => response.json())
   .then(json => console.log(json.glossary.title));
 }
