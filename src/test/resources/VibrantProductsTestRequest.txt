@@ -1,2 +1,2 @@
-GET http://localhost:8080/productOrders
+GET https://vt-fish-service-dev.herokuapp.com/products
 CorrelationId: 74fe2fbc-b245-4d79-955d-e76330c8cc6f
