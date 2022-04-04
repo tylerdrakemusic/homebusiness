@@ -1,6 +1,10 @@
 spring:
   application.name: FishApplication
+  cloud:
+    config.username: VibrantTropical
+    config.password: ccqw2vxOZ5KGa
   config:
+    #import: "optional:configserver:http://localhost:8888/"
     import: "optional:configserver:https://vibrant-tropical-config-server.herokuapp.com/"
 
 
@@ -28,35 +32,4 @@ roadie:
   estimate-path: /v1/estimates
   shipment-path: /v1/shipments
 
-product:
-  props:
-    -
-      name: Yellow-tail Acei
-      price: 
-      perbag: 4
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-    -
-      name: Bronco Guppy
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-    -
-      name: Blue Diamond Guppy
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
-    -
-      name: Red Wagtail Platy
-      perbag: 6
-      length: 4
-      width: 2
-      height: 8
-      weight: 1
 
