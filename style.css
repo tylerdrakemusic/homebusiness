@@ -2,10 +2,15 @@
 .container-offwhite{
     background-color: #F3F1EF;
     padding: 6rem .5rem 6rem .5rem;
+    min-height: 80vh;
     
 }
 .container-green{
     background-color: rgba(73,90,69,0.25);
+    padding: 6rem .5rem 6rem .5rem;
+}
+
+.container-white{
     padding: 6rem .5rem 6rem .5rem;
 }
 
