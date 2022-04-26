@@ -127,7 +127,7 @@ a.hover {
 }
 
 footer {
-    background-color: rgb(45, 118, 131);
+    background-color: #495A45;
     height: 4rem;
     color: whitesmoke;
 }
@@ -248,9 +248,9 @@ footer {
 }
 
 .back p {
-    margin: 20% 5% 5% 10%;
-    font-family: 'Staatliches', cursive;
-    font-size: 1.5rem;
+    margin: 20% 10% 5% 10%;
+    font-family: 'Poppins';
+    font-size: 1rem;
 }
 
 
