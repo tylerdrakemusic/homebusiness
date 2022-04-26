@@ -1,7 +1,12 @@
 
 .container-offwhite{
     background-color: #F3F1EF;
-    padding: 4rem .5rem 3rem .5rem;
+    padding: 6rem .5rem 6rem .5rem;
+    
+}
+.container-green{
+    background-color: rgba(73,90,69,0.25);
+    padding: 6rem .5rem 6rem .5rem;
 }
 
 .container-tan{
@@ -181,7 +186,7 @@ footer {
 .container1 {
     background-color: #f2f2f2;
     padding: 2rem;
-    border: solid .5px rgb(45, 118, 131);
+    border: solid .5px #495A45;
     border-radius: 3px;
     margin-top: 1 rem;
     margin-bottom: 3rem;
@@ -255,7 +260,7 @@ footer {
 
 
 .checkoutBox {
-    background-color: rgb(45, 118, 131);
+    background-color: #495A45;
     border-radius: .23rem;
     border: 3rem rgb(0, 5, 7);
     box-sizing: border-box;
@@ -333,7 +338,7 @@ footer {
 }
 
 a:hover{
-    color: rgb(45, 118, 131);
+    color: #495A45;
 }
 
 @media (max-width: 600px) {
