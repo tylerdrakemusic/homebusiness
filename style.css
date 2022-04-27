@@ -26,6 +26,7 @@ html {
     font-family: 'Poppins';
     color: #F3F1EF;
     font-size: 4rem;
+    text-align: right;
 
 }
 
@@ -33,6 +34,7 @@ html {
     font-family: 'Poppins', cursive;
     color: #F3F1EF;
     font-size: 2rem;
+    text-align: right;
 }
 
 h1,
