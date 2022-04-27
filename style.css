@@ -302,14 +302,14 @@ footer {
     word-spacing    : .5rem;
 }
 
-/*The styling below makes the input fields on the echeckout sheet 100%, but I can't figure out how to make this not apply to the fishcard plus and minus btns*/
-/* input[type=text] {
+/* The styling below makes the input fields on the echeckout sheet 100%, but I can't figure out how to make this not apply to the fishcard plus and minus btns*/
+.checkout-text {
     width        : 100%;
     margin-bottom: 15px;
     padding      : 12px;
     border       : 1px solid #ccc;
     border-radius: 3px;
-} */
+}
 
 .carousel-caption{
     background-color: rgba(0, 0, 0, 0.5); 
