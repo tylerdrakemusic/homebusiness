@@ -101,12 +101,13 @@ p,
 */
 
 .navbar {
-    background-color: #95A593
+    background-color: #95A593;
+   
 }
 
 .nav-item {
     color: rgb(179, 239, 247);
-    font-family: sans-serif;
+    font-family: 'Poppins';
 }
 
 a,
