@@ -33,7 +33,31 @@
 </head>
 
 <body>
-  <header class="jumbotron jumbotron-fluid">
+  <nav class="navbar navbar-expand-sm navbar-light sticky-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#vtNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="vtNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item active mr-3"><a class="nav-link" href="/index.html"> Home</a></li>
+                <li class="nav-item mr-3"><a class="nav-link" href="/index.html#about">How It Works</a></li>
+                <li class="nav-item mr-3"><a class="nav-link" href="/index.html#story">Story</a></li>
+                <li class="nav-item mr-3"><a class="nav-link" href="/pages/faq.html">FAQ</a></li>
+                <li class="nav-item mr-3"><a class="nav-link" href="/pages/policy.html">Policy</a></li>
+            </ul>
+        </div>
+        <div style="display: flex; justify-content: flex-end; margin:0; padding:0; align-items: center;">
+            <a class="cartImg" href="/pages/echeckout.html"><img src="../img/noun-shopping-bag-4794364.svg" style="background-color: transparent; height: 2rem"></a>
+            <div>
+                <span class='badge badge-warning' id='lblCartCount'></span>
+                <span style="background-color: green;" class='badge badge-warning' id='lblDollarCount'></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+  <div class="jumbotron jumbotron-fluid jumbotron-secondary">
     <video autoplay loop>
         <source src="/videos/fish/Pexels Videos 3384.mp4"
             type="video/mp4">
@@ -44,36 +68,9 @@
         </div>
         <div class="col">
             <h1>Vibrant Tropical</h1>
-            <h2>Your local fish shop</h2>
         </div>
     </div>
-</header>
-
-  <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="/index.html"><img src="/img/version2imgs/008.svg" width="50"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#vtNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="vtNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item mr-3"><a class="nav-link" href="/index.html"> Home</a></li>
-          <li class="nav-item mr-3"><a class="nav-link" href="/index.html#about">About</a></li>
-          <li class="nav-item mr-3"><a class="nav-link" href="/index.html#story">Story</a></li>
-          <li class="nav-item mr-3"><a class="nav-link" href="/pages/faq.html">FAQ</a></li>
-          <li class="nav-item mr-3"><a class="nav-link" href="/pages/policy.html">Policy</a></li>
-        </ul>
-      </div>
-      <div style="display: flex; justify-content: flex-end; margin:0; padding:0; align-items: center;">
-        <p style="color: red; background-color: transparent;">Under Construction... </p>
-        <a class="nav-item active cartImg" href="/pages/echeckout.html"><i class="fas fa-shopping-cart fa-2x"></i></a>
-        <div>
-          <span class='badge badge-warning' id='lblCartCount'></span>
-          <span style="background-color: green;" class='badge badge-warning' id='lblDollarCount'></span>
-        </div>
-      </div>
-    </div>
-  </nav>
+  </div>
   <h1 class="pageHeader">
     Checkout
   </h1>
@@ -110,11 +107,11 @@
 
           <div class="row">
             <div class="col-50">
-              <label for="zip"> <i class="fa fa-institution"></i> State</label>
+              <label for="zip"> State</label>
               <input type="text" id="billingState" name="billingState" placeholder="CO" class="checkout-text">
             </div>
             <div class="col-50">
-              <label for="zip"> <i class="fa fa-institution"></i> Zip</label>
+              <label for="zip"> </i> Zip</label>
               <input type="text" id="billingZip" name="billingZip" placeholder="80111" class="checkout-text">
             </div>
           </div>

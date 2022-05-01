@@ -1,17 +1,18 @@
 
 .container-offwhite{
     background-color: #F3F1EF;
-    padding: 4rem .5rem 6rem .5rem;
-    min-height: 80vh;
+    padding: 5rem .5rem 5rem .5rem;
+    min-height: 70vh;
     
 }
 .container-green{
-    background-color: rgba(73,90,69,0.25);
-    padding: 4rem .5rem 6rem .5rem;
+    background-color: rgba(16, 134, 113);
+    padding: 5rem .5rem 5rem .5rem;
+    color: white;
 }
 
 .container-white{
-    padding: 4rem .5rem 6rem .5rem;
+    padding: 5rem .5rem 5rem .5rem;
 }
 
 .container-tan{
@@ -22,11 +23,16 @@ html {
     scroll-behavior: smooth;
 }
 
+.accordion {
+    background-color: rgba(73,90,69,0.25)
+}
+
 .jumbotron h1 {
     font-family: 'Poppins';
     color: #F3F1EF;
     font-size: 5rem;
-    text-align: left;
+    text-align: center;
+    padding-top: 10%
 
 }
 
@@ -34,7 +40,16 @@ html {
     font-family: 'Poppins', cursive;
     color: #F3F1EF;
     font-size: 2rem;
-    text-align: left;
+    text-align: center;
+}
+
+.jumbotron-secondary h1 {
+    font-family: 'Poppins';
+    color: #F3F1EF;
+    font-size: 5rem;
+    text-align: center;
+    padding-top: 0%
+
 }
 
 h1,
@@ -53,7 +68,15 @@ p,
     position: relative;
     overflow: hidden;
     background-color:black;
-    height: 55vh;
+    height: 80vh;
+    margin-bottom: 0;
+  }
+
+  .jumbotron-secondary {
+    position: relative;
+    overflow: hidden;
+    background-color:black;
+    height: 30vh;
     margin-bottom: 0;
   }
   .jumbotron video {
@@ -101,13 +124,17 @@ p,
 */
 
 .navbar {
-    background-color: #95A593;
+    background-color: #F3F1EF;
    
 }
 
 .nav-item {
-    color: rgb(179, 239, 247);
+    color:#495A45;
     font-family: 'Poppins';
+}
+
+nav-link:hover{
+    color: rgba(16, 134, 113) !important;
 }
 
 a,
@@ -144,8 +171,8 @@ a.hover {
 }
 
 footer {
-    background-color: #95A593;
-    height: 4rem;
+    background-color: rgba(16, 134, 113);
+    height: 5rem;
     color: whitesmoke;
 }
 
@@ -209,7 +236,8 @@ footer {
     font-size: 3.2rem;
     text-align: center;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    color: rgba(16, 134, 113);
 }
 
 .icon-section{
@@ -255,24 +283,24 @@ footer {
     color: black;
 }
 .back{
-    background-color: #43484D;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
     transform: rotateY(180deg);
 }
 
 .front .fas{
-   padding-top: 30px;
+   padding-top: 2.5rem;
 }
 
 .back p {
-    margin: 20% 10% 5% 10%;
+    margin: 30% 10% 5% 10%;
     font-family: 'Poppins';
     font-size: 1rem;
 }
 
 
 .checkoutBox {
-    background-color: #95A593;
+    background-color: rgba(16, 134, 113);
     border-radius: .23rem;
     border: 3rem rgb(0, 5, 7);
     box-sizing: border-box;
