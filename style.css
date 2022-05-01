@@ -172,8 +172,9 @@ a.hover {
 
 footer {
     background-color: rgba(16, 134, 113);
-    height: 5rem;
+    height: 14rem;
     color: whitesmoke;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .menuitem {
