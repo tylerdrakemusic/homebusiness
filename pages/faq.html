@@ -34,42 +34,22 @@
 
 <body>
 
-    <header class="jumbotron jumbotron-fluid">
-        <video autoplay loop>
-            <source src="/videos/fish/stock-footage-aquarium-with-cichlids-fish-from-lake-malawi.webm"
-                type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <nav class="navbar navbar-expand-sm navbar-light sticky-top">
         <div class="container">
-            <div class="row">
-            </div>
-            <div class="col">
-                <h1>Vibrant Tropical</h1>
-                <h2>Your local fish shop</h2>
-            </div>
-        </div>
-    </header>
-
-    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="/index.html"><img src="/img/version2imgs/008.svg" width="50"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#vtNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="vtNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item mr-3"><a class="nav-link" href="/index.html"> Home</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/about.html">About</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/story.html">Story</a></li>
-                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/connect.html">Connect</a></li>
-                    <li class="nav-item mr-3 active "><a class="nav-link" href="/pages/faq.html">FAQ</a></li>
+                    <li class="nav-item active mr-3"><a class="nav-link" href="/index.html"> Home</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/index.html#about">How It Works</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/index.html#story">Story</a></li>
+                    <li class="nav-item mr-3"><a class="nav-link" href="/pages/faq.html">FAQ</a></li>
                     <li class="nav-item mr-3"><a class="nav-link" href="/pages/policy.html">Policy</a></li>
                 </ul>
             </div>
             <div style="display: flex; justify-content: flex-end; margin:0; padding:0; align-items: center;">
-                <p style="color: red; background-color: transparent;">Under Construction... </p>
-                <a class="cartImg" href="/pages/echeckout.html"><img src="/img/undraw/undraw_empty_cart_co35.svg"
-                        style="width:4.3rem; "></a>
+                <a class="cartImg" href="/pages/echeckout.html"><img src="../img/noun-shopping-bag-4794364.svg" style="background-color: transparent; height: 2rem"></a>
                 <div>
                     <span class='badge badge-warning' id='lblCartCount'></span>
                     <span style="background-color: green;" class='badge badge-warning' id='lblDollarCount'></span>
@@ -77,11 +57,39 @@
             </div>
         </div>
     </nav>
+    
+      <div class="jumbotron jumbotron-fluid jumbotron-secondary">
+        <video autoplay loop>
+            <source src="/videos/fish/Pexels Videos 3384.mp4"
+                type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container">
+            <div class="row">
+            </div>
+            <div class="col">
+                <h1>FAQ</h1>
+            </div>
+        </div>
+      </div>
 
-    <h1 class="pageHeader">
-        FAQ
-    </h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="container1">
+                <ul>
+                    <li style="font-size: 1.5rem">How are the fish delivered?</li>
+                    <p>We partner with <a href="https://www.roadie.com/" target="_blank">www.roadie.com</a>, a vendor that provides same-day local
+                    shipping, to ensure that your fish are delivered quickly and safely.</p>
+                    <li style="font-size: 1.5rem">When can I expect to receive my fish?</li>
+                    <p>You will receive a confirmation e-mail that will let you know when delivery will take place. You can typically expect same-day delivery.</p>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
 
+    <script src="https://kit.fontawesome.com/7ccc526be6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
         </script>
@@ -93,5 +101,38 @@
         </script>
 </body>
 
+<footer style="font-family: Poppins;">
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-8" style="font-size: 2rem;">
+               Contact Us!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 offset-sm-8">
+               <i class="fas fa-phone"> </i> 303-815-0107
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 offset-sm-8">
+               <i class="fas fa-envelope"></i><a href="mailto:tyler.drake@vibranttropical.com" style="color: whitesmoke"> tyler.drake@vibranttropical.com.</a>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 2.8rem;">
+            <div class="col-sm-4 offset-sm-8">
+                Copyright &copy; Vibrant Tropical
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 offset-sm-7">
+                <script id="godaddy-security-s" src="https://cdn.sucuri.net/badge/badge.js" data-s="2036"
+                data-i="6653206d360252b76bb45421cd1358556b6a8caaa7" data-p="o" data-c="d" data-t="g"></script>
+            </div>
+        </div>
+    </div>
+   
+</footer>
+  
 
 </html>
